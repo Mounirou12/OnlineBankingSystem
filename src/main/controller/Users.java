@@ -1,5 +1,7 @@
 package main.controller;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,6 +13,10 @@ public class Users {
     private static final String USERNAME = "mounir";
     private static final String PASSWORD = "agnila10";
 
+    private static String passwordSecurity(String password){
+        return BCrypt.hashpw(password,BCrypt.gensalt());
+    }
+
     public static boolean insertUser(String firstName,String lastName,String email,String passwordHash,String phone){
         String queryCR = "INSERT INTO Users(firstName,lastName,email,passwordHash,phone) VALUES (?,?,?,?,?)";
         try (Connection conn = DriverManager.getConnection(URL,USERNAME,PASSWORD);
@@ -18,7 +24,7 @@ public class Users {
             stmt.setString(1,firstName);
             stmt.setString(2,lastName);
             stmt.setString(3,email);
-            stmt.setString(4,passwordHash);
+            stmt.setString(4,passwordSecurity(passwordHash));
             stmt.setString(5,phone);
             return  stmt.executeUpdate() >0;
         } catch (SQLException e) {
