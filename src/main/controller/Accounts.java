@@ -1,12 +1,12 @@
 package main.controller;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import main.model.Account;
 
 public class Accounts {
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/OnlineBanking";
@@ -36,7 +36,33 @@ public class Accounts {
         }
     }
 
+    public static List<Account> getAllAccountsByUserId(int userId) {
+        List<Account> accounts = new ArrayList<>();
+        String queryRDBU = "SELECT * FROM Accounts WHERE userId = ?";
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+                PreparedStatement stmt = conn.prepareStatement(queryRDBU)) {
+            stmt.setInt(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    accounts.add(new Account(
+                            rs.getInt("id"),
+                            rs.getInt("userId"),
+                            rs.getString("accountNumber").replaceAll("^([^ ]* ){3}", "**** **** **** "),
+                            rs.getString("accountType"),
+                            rs.getLong("balance"),
+                            rs.getString("status")));
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("L'utilisateur ne possede pas de compte" + e.getMessage());
+        }
+        return accounts;
+    }
+
     public static void main(String[] args) {
-        System.out.println(insertAccount(3,"","EPARGNE",25000,"ACTIF"));
+        // System.out.println(insertAccount(3, "", "COURANT", 50000, "BLOQUE"));
+        List<Account> accounts = getAllAccountsByUserId(3);
+        accounts.forEach(System.out::println);
     }
 }
