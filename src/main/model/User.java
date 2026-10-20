@@ -1,4 +1,4 @@
-package main.modele;
+package main.model;
 
 public class User {
 }
