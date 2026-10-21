@@ -5,10 +5,10 @@ public class Account {
     private final int userId;
     private final String accountNumber;
     private final String accountType;
-    private final long balance;
+    private final double balance;
     private final String status;
 
-    public Account(int id, int userId, String accountNumber, String accountType, long balance, String status) {
+    public Account(int id, int userId, String accountNumber, String accountType, double balance, String status) {
         this.id = id;
         this.userId = userId;
         this.accountNumber = accountNumber;
@@ -33,7 +33,7 @@ public class Account {
         return accountType;
     }
 
-    public long getBalance() {
+    public double getBalance() {
         return balance;
     }
 
