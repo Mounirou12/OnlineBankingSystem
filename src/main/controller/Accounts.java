@@ -38,16 +38,18 @@ public class Accounts {
 
     public static List<Account> getAllAccountsByUserId(int userId) {
         List<Account> accounts = new ArrayList<>();
-        String queryRDBU = "SELECT * FROM Accounts WHERE userId = ?";
+        String queryRDBU = "SELECT id, userId, accountNumber, accountType, balance, status  FROM Accounts WHERE userId = ?";
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
                 PreparedStatement stmt = conn.prepareStatement(queryRDBU)) {
             stmt.setInt(1, userId);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
+                    String rawAccountNumber = rs.getString("accountNumber");
+                    String maskedNumber = "**** " + rawAccountNumber.substring(Math.max(0,rawAccountNumber.length()-4));
                     accounts.add(new Account(
                             rs.getInt("id"),
                             rs.getInt("userId"),
-                            rs.getString("accountNumber").replaceAll("^([^ ]* ){3}", "**** **** **** "),
+                            maskedNumber,
                             rs.getString("accountType"),
                             rs.getLong("balance"),
                             rs.getString("status")));
