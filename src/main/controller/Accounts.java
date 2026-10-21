@@ -28,7 +28,7 @@ public class Accounts {
             stmt.setInt(1, userId);
             stmt.setString(2, accountNumber);
             stmt.setString(3, accountType);
-            stmt.setLong(4, balance);
+            stmt.setDouble(4, balance);
             stmt.setString(5, status);
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -45,13 +45,14 @@ public class Accounts {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     String rawAccountNumber = rs.getString("accountNumber");
-                    String maskedNumber = "**** " + rawAccountNumber.substring(Math.max(0,rawAccountNumber.length()-4));
+                    String maskedNumber = "**** "
+                            + rawAccountNumber.substring(Math.max(0, rawAccountNumber.length() - 4));
                     accounts.add(new Account(
                             rs.getInt("id"),
                             rs.getInt("userId"),
                             maskedNumber,
                             rs.getString("accountType"),
-                            rs.getLong("balance"),
+                            rs.getDouble("balance"),
                             rs.getString("status")));
                 }
             }
@@ -62,9 +63,33 @@ public class Accounts {
         return accounts;
     }
 
+    public static Account getAccountByIdAndUserId(int id, int userId) {
+        String queryRID = "SELECT id,userId,accountNumber, accountType, balance, status FROM Accounts WHERE id = ? AND userId = ?;";
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+                PreparedStatement stmt = conn.prepareStatement(queryRID)) {
+            stmt.setInt(1, id);
+            stmt.setInt(2, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return new Account(
+                            rs.getInt("id"),
+                            rs.getInt("userId"),
+                            rs.getString("accountNumber"),
+                            rs.getString("accountType"),
+                            rs.getDouble("balance"),
+                            rs.getString("status"));
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération du compte : " + e.getMessage());
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         // System.out.println(insertAccount(3, "", "COURANT", 50000, "BLOQUE"));
         List<Account> accounts = getAllAccountsByUserId(3);
         accounts.forEach(System.out::println);
+        System.out.println(getAccountByIdAndUserId(1, 3));
     }
 }
