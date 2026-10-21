@@ -87,7 +87,7 @@ public class Accounts {
     }
 
     public static void main(String[] args) {
-        // System.out.println(insertAccount(3, "", "COURANT", 50000, "BLOQUE"));
+        System.out.println(insertAccount(4, "", "COURANT", 30000, "ACTIF"));
         List<Account> accounts = getAllAccountsByUserId(3);
         accounts.forEach(System.out::println);
         System.out.println(getAccountByIdAndUserId(1, 3));
