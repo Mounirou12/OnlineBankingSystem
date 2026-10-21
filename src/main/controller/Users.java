@@ -118,9 +118,9 @@ public class Users {
     }
 
     public static void main(String[] args) {
-        // System.out.println(insertUser("Wislon","Mounirou","wilsonmounirou@gmail.com","mounirou10","+22990123474"));
+         System.out.println(insertUser("John","Doe","johndoe@gmail.com","john@10","+22990427494"));
         // System.out.println(connexion("wilsonmounirou@gmail.com","mounirou10"));
-        System.out.println(passwordChange(3, "agnil@10", "agnil@10", "agnil@10"));
+        //System.out.println(passwordChange(3, "agnil@10", "agnil@10", "agnil@10"));
 
     }
 }
