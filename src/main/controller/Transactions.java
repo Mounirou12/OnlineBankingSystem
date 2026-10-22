@@ -1,6 +1,9 @@
 package main.controller;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import main.model.Transaction;
 
 public class Transactions {
 
@@ -135,9 +138,39 @@ public class Transactions {
         }
     }
 
+    public static List<Transaction> getAllTransactionsByUserId(int userId){
+        List<Transaction> transactions = new ArrayList<>();
+        String queryATU  = "SELECT t.id, t.transactionDate, t.amount, t.type, t.recipientName, t.status, a.accountNumber " +
+                "FROM Transactions t " +
+                "JOIN Accounts a ON t.accountId = a.id " +
+                "JOIN Users u ON a.userId = u.id " +
+                "WHERE u.id = ? " +
+                "ORDER BY t.transactionDate DESC";
+        try (Connection conn = DriverManager.getConnection(URL,USERNAME,PASSWORD);
+        PreparedStatement stmt = conn.prepareStatement(queryATU)){
+            stmt.setInt(1,userId);
+            try (ResultSet rs = stmt.executeQuery()){
+                while (rs.next()){
+                    transactions.add(new Transaction(
+                            rs.getInt("id"),
+                            rs.getDate("transactionDate"),
+                            rs.getDouble("amount"),
+                            rs.getString("type"),
+                            rs.getString("recipientName"),
+                            rs.getString("status"),
+                            rs.getString("accountNumber")
+                    ));
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return  transactions;
+    }
+
     public static void main(String[] args) {
         System.out.println("=== TEST DE VIREMENT INTERNE ===");
-        int compteSource = 1; // Le compte d'Alex (ACTIF)
+      /*   int compteSource = 1; // Le compte d'Alex (ACTIF)
         String compteDestinataire = "4423 1727 3619 7604"; // Le compte de Taylor (BLOQUÉ)
         double montant = 2500;
         String nomDestinataire = getAccountOwnerName(compteDestinataire);
@@ -158,6 +191,8 @@ public class Transactions {
             }
         } else {
             System.out.println("❌ Numéro de compte introuvable.");
-        }
+        } */
+        List<Transaction> transactions = getAllTransactionsByUserId(3);
+        transactions.forEach(System.out::println);
     }
 }
