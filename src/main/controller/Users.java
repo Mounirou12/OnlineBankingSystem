@@ -1,4 +1,5 @@
-package main.controller;
+package main;
+
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -117,10 +118,10 @@ public class Users {
         }
     }
 
-    public static void main(String[] args) {
-         System.out.println(insertUser("John","Doe","johndoe@gmail.com","john@10","+22990427494"));
-        // System.out.println(connexion("wilsonmounirou@gmail.com","mounirou10"));
-        //System.out.println(passwordChange(3, "agnil@10", "agnil@10", "agnil@10"));
-
-    }
+//    public static void main(String[] args) {
+//         System.out.println(insertUser("John","Doe","johndoe@gmail.com","john@10","+22990427494"));
+//        // System.out.println(connexion("wilsonmounirou@gmail.com","mounirou10"));
+//        //System.out.println(passwordChange(3, "agnil@10", "agnil@10", "agnil@10"));
+//
+//    }
 }

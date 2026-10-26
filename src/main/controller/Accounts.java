@@ -1,4 +1,4 @@
-package main.controller;
+package main;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import main.model.Account;
 
 public class Accounts {
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/OnlineBanking";
@@ -86,10 +85,10 @@ public class Accounts {
         return null;
     }
 
-    public static void main(String[] args) {
-        System.out.println(insertAccount(4, "", "COURANT", 30000, "ACTIF"));
-        List<Account> accounts = getAllAccountsByUserId(3);
-        accounts.forEach(System.out::println);
-        System.out.println(getAccountByIdAndUserId(1, 3));
-    }
+//    public static void main(String[] args) {
+//        System.out.println(insertAccount(4, "", "COURANT", 30000, "ACTIF"));
+//        List<Account> accounts = getAllAccountsByUserId(3);
+//        accounts.forEach(System.out::println);
+//        System.out.println(getAccountByIdAndUserId(1, 3));
+//    }
 }
