@@ -1,4 +1,6 @@
-package main;
+package main.controller;
+
+import main.model.Account;
 
 import java.sql.*;
 import java.util.ArrayList;

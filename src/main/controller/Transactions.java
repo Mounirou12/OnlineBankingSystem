@@ -1,4 +1,6 @@
-package main;
+package main.controller;
+
+import main.model.Transaction;
 
 import java.sql.*;
 import java.time.LocalDate;
