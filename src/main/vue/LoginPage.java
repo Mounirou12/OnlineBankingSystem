@@ -179,9 +179,9 @@ public class LoginPage extends JFrame {
 
         // ⚠️ Vérifie que la classe Users existe et a bien une méthode connexion
         if (Users.connexion(identifiant, motDePasse)) {
-            JOptionPane.showMessageDialog(this, "Bienvenue "+ Session.getCurrentUserFirstName() + "!");
+//            JOptionPane.showMessageDialog(this, "Bienvenue "+ Session.getCurrentUserFirstName() + "!");
             this.dispose();
-            // new DashboardPage().setVisible(true);
+            new AccueilPage().setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this,
                     "Email ou mot de passe incorrect.",
