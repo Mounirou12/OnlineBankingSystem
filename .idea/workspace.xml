@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5143157c-8033-42ae-bbff-43b2222b6964" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/vue/LoginPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/controller/Session.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/controller/Accounts.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/controller/Users.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/model/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/model/Account.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/model/Transaction.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/model/Transaction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/model/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/controller/Accounts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/controller/Accounts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/controller/Transactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/controller/Transactions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/controller/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/controller/Users.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/LoginPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +68,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Accounts.executor": "Run",
-    "Application.LoginPage.executor": "Debug",
+    "Application.LoginPage.executor": "Run",
     "Application.Transactions.executor": "Run",
     "Application.Users.executor": "Run",
     "Downloaded.Files.Path.Enabled": "true",
