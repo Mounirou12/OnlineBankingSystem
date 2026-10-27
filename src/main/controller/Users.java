@@ -29,7 +29,7 @@ public class Users {
 
     public static boolean connexion(String identifiant, String passwordHash) {
         // 1. On cherche l'utilisateur par email OU firstName (sans le mot de passe)
-        String queryCn = "SELECT passwordHash FROM Users "
+        String queryCn = "SELECT id,Users.firstName,email,passwordHash FROM Users "
                 + "WHERE email = ? OR firstName = ?";
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
                 PreparedStatement stmt = conn.prepareStatement(queryCn)) {
@@ -40,7 +40,10 @@ public class Users {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     String hasCode = rs.getString("passwordHash");
-                    return BCrypt.checkpw(passwordHash, hasCode);
+                    if (BCrypt.checkpw(passwordHash,hasCode)){
+                        Session.setCurrentUser(rs.getInt("id"),rs.getString("firstName"),rs.getString("email"));
+                        return  true;
+                    }
                 }
                 return false;
             }
