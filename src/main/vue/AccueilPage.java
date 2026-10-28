@@ -1,4 +1,6 @@
-package main.vue;
+    package main.vue;
+
+import main.vue.page.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +18,12 @@ public class AccueilPage  extends JFrame{
     private final JPanel  contentArea;
     private final  CardLayout cardLayout;
 
+    ClientOverviewPage overviewPage;
+    ClientAccountsPage accountsPage;
+    ClientTransfertPage transfertPage;
+    ClientTransactionsPage transactionsPage;
+    ClientInfoPage infoPage;
+
     public AccueilPage() {
         setTitle("SecureBank");
         setSize(1000,600);
@@ -23,14 +31,26 @@ public class AccueilPage  extends JFrame{
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
+        overviewPage = new ClientOverviewPage();
+        accountsPage = new ClientAccountsPage();
+        transfertPage = new ClientTransfertPage();
+        transactionsPage = new ClientTransactionsPage();
+        infoPage = new ClientInfoPage();
+
         cardLayout = new CardLayout();
         contentArea = new JPanel(cardLayout);
         contentArea.setBackground(Color.WHITE);
 
+        contentArea.add(overviewPage,"overview");
+        contentArea.add(accountsPage,"accounts");
+        contentArea.add(transfertPage,"transfer");
+        contentArea.add(transactionsPage,"transactions");
+        contentArea.add(infoPage,"profile");
+
         add(createSidebar(),BorderLayout.WEST);
         add(contentArea,BorderLayout.CENTER);
 
-
+        showPage("overview");
     }
 
     private JPanel createSidebar(){
@@ -73,6 +93,7 @@ public class AccueilPage  extends JFrame{
         if (active) activeButton = btn;
             btn.addActionListener(e->{
                 setActiveButton(btn);
+                showPage(pageKey);
             });
             return  btn;
     }
@@ -93,5 +114,11 @@ public class AccueilPage  extends JFrame{
         button.setForeground(SIDEBAR_ACTIVE); // ⚠️ Modifié ici : Blanc au lieu de TEXT_DARK
 
         activeButton = button;
+    }
+
+    private void showPage(String pageKey) {
+        if (contentArea == null)
+            return;
+        cardLayout.show(contentArea, pageKey);
     }
 }
