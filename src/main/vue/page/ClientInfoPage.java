@@ -1,8 +1,11 @@
 package main.vue.page;
 
+import main.controller.Session;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.time.LocalDate;
 
 public class ClientInfoPage extends JPanel {
     // --- Palette de couleurs basée sur l'image ---
@@ -108,13 +111,15 @@ public class ClientInfoPage extends JPanel {
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
+        LocalDate dateNaiss = Session.getCurrentDateNaissance();
+        String texteDate = (dateNaiss != null) ? dateNaiss.toString() : "Non renseignée";
         // Lignes d'informations (Icon, Label, Champ)
-        addRow(gridPanel, gbc, 0, "👤", "Nom Complet :", "Mounirou Fagbemy");
-        addRow(gridPanel, gbc, 1, "📅", "Date de Naissance :", "15 mars 2002");
-        addRow(gridPanel, gbc, 2, "♂", "Sexe :", "Masculin");
-        addRow(gridPanel, gbc, 3, "📞", "Téléphone :", "+229 01 97 12 34 56");
-        addRow(gridPanel, gbc, 4, "✉️", "Email :", "mounirou@gmail.com");
-        addRow(gridPanel, gbc, 5, "🏠", "Adresse :", "Cotonou, Bénin");
+        addRow(gridPanel, gbc, 0, "👤", "Nom Complet :", Session.getCurrentUserFirstName() + " "+Session.getCurrentUserLastName());
+        addRow(gridPanel, gbc, 1, "📅", "Date de Naissance :", texteDate);
+        addRow(gridPanel, gbc, 2, "♂", "Sexe :", Session.getCurrentUserSexe());
+        addRow(gridPanel, gbc, 3, "📞", "Téléphone :", Session.getCurrentUserPhone());
+        addRow(gridPanel, gbc, 4, "✉️", "Email :", Session.getCurrentUserEmail());
+        addRow(gridPanel, gbc, 5, "🏠", "Adresse :", Session.getCurrentUserAdresse());
         addRow(gridPanel, gbc, 6, "🗓️", "Date d'Inscription :", "10 janvier 2025");
 
         card.add(gridPanel, BorderLayout.CENTER);
