@@ -4,6 +4,7 @@ package main.controller;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class Users {
 
@@ -12,8 +13,8 @@ public class Users {
     private static final String PASSWORD = "agnila10";
 
     public static boolean insertUser(String firstName, String lastName, String email, String passwordHash,
-            String phone) {
-        String queryCR = "INSERT INTO Users(firstName,lastName,email,passwordHash,phone) VALUES (?,?,?,?,?)";
+                                     String phone, LocalDate dateNaissance, String sexe, String adresse) {
+        String queryCR = "INSERT INTO Users(firstName,lastName,email,passwordHash,phone,dateNaissance,sexe,adresse) VALUES (?,?,?,?,?,?,?,?)";
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
                 PreparedStatement stmt = conn.prepareStatement(queryCR)) {
             stmt.setString(1, firstName);
@@ -21,6 +22,9 @@ public class Users {
             stmt.setString(3, email);
             stmt.setString(4, BCrypt.hashpw(passwordHash, BCrypt.gensalt()));
             stmt.setString(5, phone);
+            stmt.setObject(6,dateNaissance);
+            stmt.setString(7,sexe);
+            stmt.setString(8,adresse);
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             return false;
@@ -29,7 +33,7 @@ public class Users {
 
     public static boolean connexion(String identifiant, String passwordHash) {
         // 1. On cherche l'utilisateur par email OU firstName (sans le mot de passe)
-        String queryCn = "SELECT id,Users.firstName,email,passwordHash FROM Users "
+        String queryCn = "SELECT id,firstName,lastName,email,phone,dateNaissance,sexe,adresse,passwordHash FROM Users "
                 + "WHERE email = ? OR firstName = ?";
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
                 PreparedStatement stmt = conn.prepareStatement(queryCn)) {
@@ -41,7 +45,19 @@ public class Users {
                 if (rs.next()) {
                     String hasCode = rs.getString("passwordHash");
                     if (BCrypt.checkpw(passwordHash,hasCode)){
-                        Session.setCurrentUser(rs.getInt("id"),rs.getString("firstName"),rs.getString("email"));
+                        Date sqlDateNaissance = rs.getDate("dateNaissance");
+                        LocalDate dateNaissance = (sqlDateNaissance != null)
+                                ? sqlDateNaissance.toLocalDate()
+                                :null;
+                        Session.setCurrentUser(
+                                rs.getInt("id"),
+                                rs.getString("firstName"),
+                                rs.getString("lastName"),
+                                rs.getString("email"),
+                                rs.getString("phone"),
+                                dateNaissance,
+                                rs.getString("sexe"),
+                                rs.getString("adresse"));
                         return  true;
                     }
                 }
