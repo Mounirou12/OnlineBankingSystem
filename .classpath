@@ -6,8 +6,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry exported="true" kind="lib" path="/home/mounirou/Documents/mysql-connector-j-9.3.0/mysql-connector-j-9.3.0.jar"/>
+	<classpathentry kind="lib" path="/home/mounirou/Documents/mysql-connector-j-9.3.0/mysql-connector-j-9.3.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/mysql-connector-j-9.3.0"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/mindrot.jbcrypt"/>
+	<classpathentry kind="lib" path="/home/mounirou/Documents/jbcrypt-0.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

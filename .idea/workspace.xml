@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5143157c-8033-42ae-bbff-43b2222b6964" name="Changes" comment="" />
+    <list default="true" id="5143157c-8033-42ae-bbff-43b2222b6964" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9ec7ee17-f3d5-40d5-be26-9b357345a5d5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9ec7ee17-f3d5-40d5-be26-9b357345a5d5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/controller/Users.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/controller/Users.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/vue/AccueilPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/AccueilPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/controller/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/controller/Session.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/controller/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/controller/Users.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/AccueilPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/AccueilPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/page/ClientInfoPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/page/ClientInfoPage.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,34 +70,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Accounts.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginPage.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Transactions.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Users.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/mounirou/Downloads/jbcrypt-0.4.jar&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;python.packages.toolwindow.project.migrated.to.right.top.v2&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Accounts.executor": "Run",
+    "Application.LoginPage.executor": "Debug",
+    "Application.Transactions.executor": "Run",
+    "Application.Users.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/mounirou/Downloads/jbcrypt-0.4.jar",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.LoginPage">
     <configuration name="Accounts" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.controller.Accounts" />
