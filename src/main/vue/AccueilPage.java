@@ -26,7 +26,7 @@ public class AccueilPage  extends JFrame{
 
     public AccueilPage() {
         setTitle("SecureBank");
-        setSize(1000,600);
+        setSize(1000,700);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
