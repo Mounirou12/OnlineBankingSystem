@@ -63,7 +63,7 @@ public class ClientInfoPage extends JPanel {
         // Titre
         JLabel title = new JLabel("Informations du Client");
         title.setFont(new Font("Segoe UI", Font.BOLD, 24));
-        title.setForeground(Color.WHITE);
+        title.setForeground(TEXT_DARK);
 
         JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 0));
         leftPanel.setOpaque(false);
@@ -162,11 +162,31 @@ public class ClientInfoPage extends JPanel {
         // Bouton Changer de mot de passe
         JButton btnChangePassword = createStyledButton("Changer de mot de passe", "🔒", BTN_WARNING);
         btnChangePassword.addActionListener(e -> {
-            // Action à implémenter : ouvrir une boîte de dialogue de changement de mot de passe
-            JOptionPane.showMessageDialog(this,
-                    "Fonctionnalité de changement de mot de passe à implémenter.",
-                    "Changer de mot de passe",
-                    JOptionPane.INFORMATION_MESSAGE);
+            Window parentWindow = SwingUtilities.getWindowAncestor(ClientInfoPage.this);
+            ChangePasswordDialog dialog = new ChangePasswordDialog(parentWindow);
+            dialog.setVisible(true);   // bloque jusqu'à fermeture (APPLICATION_MODAL)
+
+            // Si le mot de passe a été changé → reconnexion obligatoire
+            if (dialog.isPasswordChanged()) {
+                JOptionPane.showMessageDialog(
+                        ClientInfoPage.this,
+                        "Mot de passe modifié avec succès.\nVeuillez vous reconnecter.",
+                        "Reconnexion requise",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+
+                // 1. Nettoyer la session
+                Session.clear();
+
+                // 2. Ouvrir la page de connexion
+                SwingUtilities.invokeLater(() -> new LoginPage().setVisible(true));
+
+                // 3. Fermer la fenêtre actuelle
+                Window current = SwingUtilities.getWindowAncestor(ClientInfoPage.this);
+                if (current != null) {
+                    current.dispose();
+                }
+            }
         });
 
         // Bouton Déconnexion
