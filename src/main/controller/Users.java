@@ -85,12 +85,12 @@ public class Users {
         }
     }
 
-    public static String passwordChange(int userId, String oldPassword, String newPassword, String confirmPassword) {
+    public static boolean passwordChange(int userId, String oldPassword, String newPassword, String confirmPassword) {
 
         // ÉTAPE 1 : Vérifier si le nouveau mot de passe et la confirmation sont
         // identiques
         if (newPassword == null || !newPassword.equals(confirmPassword)) {
-            return "ÉCHEC : La confirmation ne correspond pas au nouveau mot de passe. Veuillez reprendre le processus.";
+            return false;
         }
         // Connexion à la base de données
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
@@ -107,10 +107,10 @@ public class Users {
                         // Sécurité : Si vous utilisez du hac]hage (ex: BCrypt), utilisez :
                         // !BCrypt.checkpw(ancienMdp, mdpStocke)
                         if (!BCrypt.checkpw(oldPassword, passwordStck)) {
-                            return "ÉCHEC : Le mot de passe actuel est incorrect. Mttez le mot de passe juste";
+                            return false;
                         }
                     } else {
-                        return "ÉCHEC : Utilisateur introuvable.";
+                        return false;
                     }
                 }
             }
@@ -125,15 +125,15 @@ public class Users {
 
                 int lignesModifiees = pstmtUpdate.executeUpdate();
                 if (lignesModifiees > 0) {
-                    return "SUCCÈS : Votre mot de passe a été modifié avec succès !";
+                    return true;
                 } else {
-                    return "ÉCHEC : Impossible de mettre à jour le mot de passe.";
+                    return false;
                 }
             }
 
         } catch (SQLException e) {
             System.err.println("Erreur SQL : " + e.getMessage());
-            return "ÉCHEC : Une erreur technique est survenue.";
+            return false;
         }
     }
 
