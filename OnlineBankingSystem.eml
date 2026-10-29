@@ -4,6 +4,5 @@
 	<contentEntry url="file://$MODULE_DIR$"/>
 	<levels>
 		<level name="mysql-connector-j-9.3.0" value="project"/>
-		<level name="mindrot.jbcrypt" value="project"/>
 	</levels>
 </component>
