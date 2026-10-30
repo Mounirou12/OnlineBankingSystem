@@ -12,24 +12,44 @@ public class Users {
     private static final String USERNAME = "mounir";
     private static final String PASSWORD = "agnila10";
 
-    public static boolean insertUser(String firstName, String lastName, String email, String passwordHash,
-                                     String phone, LocalDate dateNaissance, String sexe, String adresse) {
-        String queryCR = "INSERT INTO Users(firstName,lastName,email,passwordHash,phone,dateNaissance,sexe,adresse) VALUES (?,?,?,?,?,?,?,?)";
-        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-                PreparedStatement stmt = conn.prepareStatement(queryCR)) {
-            stmt.setString(1, firstName);
-            stmt.setString(2, lastName);
-            stmt.setString(3, email);
-            stmt.setString(4, BCrypt.hashpw(passwordHash, BCrypt.gensalt()));
-            stmt.setString(5, phone);
-            stmt.setObject(6,dateNaissance);
-            stmt.setString(7,sexe);
-            stmt.setString(8,adresse);
-            return stmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            return false;
+        public static boolean insertUser(String firstName, String lastName, String email, String passwordHash,
+                                         String phone, LocalDate dateNaissance, String sexe, String adresse) {
+            String queryCR = "INSERT INTO Users(firstName,lastName,email,passwordHash,phone,dateNaissance,sexe,adresse) VALUES (?,?,?,?,?,?,?,?)";
+            try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+                    PreparedStatement stmt = conn.prepareStatement(queryCR,Statement.RETURN_GENERATED_KEYS)) {
+                stmt.setString(1, firstName);
+                stmt.setString(2, lastName);
+                stmt.setString(3, email);
+                stmt.setString(4, BCrypt.hashpw(passwordHash, BCrypt.gensalt()));
+                stmt.setString(5, phone);
+                stmt.setObject(6,dateNaissance);
+                stmt.setString(7,sexe);
+                stmt.setString(8,adresse);
+                int  rowsAffected = stmt.executeUpdate() ;
+                if (rowsAffected >0){
+                    try (ResultSet rs = stmt.getGeneratedKeys()){
+                        if (rs.next()){
+                            int newUserId = rs.getInt(1);
+                            Session.setCurrentUser(
+                                    newUserId,
+                                    firstName,
+                                    lastName,
+                                    email,
+                                    phone,
+                                    dateNaissance,
+                                    sexe,
+                                    adresse
+                            );
+                            return true; // Succès total
+                        }
+                    }
+                }
+                return false;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
         }
-    }
 
     public static boolean connexion(String identifiant, String passwordHash) {
         // 1. On cherche l'utilisateur par email OU firstName (sans le mot de passe)
