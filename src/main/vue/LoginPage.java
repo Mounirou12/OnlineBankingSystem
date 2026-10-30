@@ -2,6 +2,7 @@ package main.vue;
 
 import main.controller.Session;
 import main.controller.Users;
+import main.vue.page.CreateUserDialog;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -24,7 +25,7 @@ public class LoginPage extends JFrame {
 
     public LoginPage() {
         setTitle("SecureBank - Connexion");
-        setSize(450, 600);
+        setSize(520, 650);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
@@ -48,8 +49,8 @@ public class LoginPage extends JFrame {
         JPanel card = new JPanel();
         card.setLayout(new BoxLayout(card, BoxLayout.Y_AXIS));
         card.setBackground(Color.WHITE);
-        card.setBorder(new EmptyBorder(40, 40, 40, 40));
-        card.setPreferredSize(new Dimension(380, 450));
+        card.setBorder(new EmptyBorder(30, 30, 30, 30));
+        card.setPreferredSize(new Dimension(440, 480));
 
         JLabel title = new JLabel("SecureBank");
         title.setFont(new Font("Segoe UI", Font.BOLD, 28));
@@ -90,16 +91,30 @@ public class LoginPage extends JFrame {
         card.add(passLabel);
         card.add(Box.createVerticalStrut(5));
         card.add(passwordField);
-        card.add(Box.createVerticalStrut(10));
+        card.add(Box.createVerticalStrut(25)); // Espace avant la ligne des boutons
 
-        JLabel forgotLabel = new JLabel("Mot de passe oublié ?");
-        forgotLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        forgotLabel.setForeground(PRIMARY_COLOR);
-        forgotLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        forgotLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
-        card.add(forgotLabel);
-        card.add(Box.createVerticalStrut(30));
+        // ============================================================
+        // 1. Création du bouton "Nouvel utilisateur"
+        // ============================================================
+        JButton btnAddUser = new JButton("Nouvel utilisateur");
+        btnAddUser.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        btnAddUser.setForeground(PRIMARY_COLOR);
+        btnAddUser.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnAddUser.setContentAreaFilled(false);
+        btnAddUser.setBorderPainted(false);
+        btnAddUser.setFocusPainted(false);
+        btnAddUser.addActionListener(e -> {
+            Window parent = SwingUtilities.getWindowAncestor(this);
+            CreateUserDialog dialog = new CreateUserDialog(parent);
+            dialog.setVisible(true);
+            if (dialog.isUserCreated()) {
+                // chargerUtilisateurs();
+            }
+        });
 
+        // ============================================================
+        // 2. Création du bouton "Se connecter"
+        // ============================================================
         loginButton = new JButton("Se connecter") {
             @Override
             protected void paintComponent(Graphics g) {
@@ -112,10 +127,11 @@ public class LoginPage extends JFrame {
             }
         };
 
-        loginButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 45));
+        loginButton.setPreferredSize(new Dimension(140, 42)); // Largeur augmentée à 150
+        loginButton.setMaximumSize(new Dimension(140, 42));
         loginButton.setBackground(PRIMARY_COLOR);
         loginButton.setForeground(Color.WHITE);
-        loginButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        loginButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
         loginButton.setFocusPainted(false);
         loginButton.setBorderPainted(false);
         loginButton.setContentAreaFilled(false);
@@ -123,18 +139,38 @@ public class LoginPage extends JFrame {
 
         loginButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseEntered(MouseEvent e) { loginButton.setBackground(HOVER_COLOR); }
+            public void mouseEntered(MouseEvent e) { loginButton.setBackground(HOVER_COLOR); loginButton.repaint(); }
             @Override
-            public void mouseExited(MouseEvent e) { loginButton.setBackground(PRIMARY_COLOR); }
+            public void mouseExited (MouseEvent e) { loginButton.setBackground(PRIMARY_COLOR); loginButton.repaint(); }
         });
 
         loginButton.addActionListener(e -> manageConnexion());
 
-        card.add(loginButton);
+        // ============================================================
+        // 3. Panneau horizontal : les deux boutons sur la même ligne
+        // ============================================================
+        JPanel headerRow = new JPanel(new BorderLayout());
+        headerRow.setOpaque(false);
+        headerRow.setAlignmentX(Component.LEFT_ALIGNMENT);
+        headerRow.setMaximumSize(new Dimension(Integer.MAX_VALUE, 45)); // Évite que BoxLayout l'étire
+
+        // À gauche : "Nouvel utilisateur"
+        headerRow.add(btnAddUser, BorderLayout.WEST);
+
+        // À droite : "Se connecter"
+        JPanel rightPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 20, 0));
+        rightPanel.setOpaque(false);
+        rightPanel.add(loginButton);
+        headerRow.add(rightPanel, BorderLayout.EAST);
+
+        // ============================================================
+        // 4. Ajout UNIQUE de la ligne dans la carte
+        // ============================================================
+        card.add(headerRow);
+
         mainPanel.add(card);
         setContentPane(mainPanel);
     }
-
     // ⚠️ Correction : on retire le paramètre placeholder inutile et on corrige les couleurs
     private void styliserChamp(JTextField field) {
         field.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
