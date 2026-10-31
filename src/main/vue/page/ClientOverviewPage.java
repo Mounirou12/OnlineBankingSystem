@@ -1,9 +1,15 @@
 package main.vue.page;
 
+import main.controller.Accounts;
+import main.controller.Session;
+import main.controller.Users;
+import main.model.AccountActive;
+
 import javax.swing.*;
 
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.util.List;
 
 
 public class ClientOverviewPage extends JPanel {
@@ -163,23 +169,47 @@ public class ClientOverviewPage extends JPanel {
 
         // Champ From Account
         panel.add(createLabel("From Account"));
-        JComboBox<String> cbFromAccount = new JComboBox<>(new String[]{"Primary Account (•••• 4821)"});
+
+// 1. Création d'un JComboBox vide
+        JComboBox<String> cbFromAccount = new JComboBox<>();
         styleComboBox(cbFromAccount);
+
+// 2. Récupération de l'ID de l'utilisateur connecté (Adaptez selon votre classe Session)
+        int currentUserId = Session.getCurrentUserId();
+
+// 3. Appel de votre méthode
+        List<AccountActive> userAccounts = Accounts.getAllAccountsByUserIdAndType(currentUserId);
+
+// 4. Remplissage dynamique de la liste
+        if (userAccounts != null && !userAccounts.isEmpty()) {
+            for (AccountActive account : userAccounts) {
+                String rawNumber = account.getAccountName(); // Récupère le numéro
+
+                // On formate pour afficher seulement les 4 derniers chiffres (comme sur la maquette)
+                String maskedNumber = "•••• " + rawNumber.substring(Math.max(0, rawNumber.length() - 4));
+
+                // On ajoute au JComboBox
+                cbFromAccount.addItem("Primary Account (" + maskedNumber + ")");
+            }
+        } else {
+            // Si l'utilisateur n'a pas de compte, on met un texte par défaut
+            cbFromAccount.addItem("Aucun compte actif disponible");
+        }
+
+// 5. Ajout du composant au panel
         panel.add(cbFromAccount);
         panel.add(Box.createVerticalStrut(15));
 
         // Champ Recipient
         panel.add(createLabel("Recipient"));
-        JTextField txtRecipient = new JTextField("Enter recipient name");
-        txtRecipient.setForeground(TEXT_GRAY);
+        PlaceholderTextField txtRecipient = new PlaceholderTextField("Enter recipient name");
         styleTextField(txtRecipient);
         panel.add(txtRecipient);
         panel.add(Box.createVerticalStrut(15));
 
         // Champ Amount
         panel.add(createLabel("Amount"));
-        JTextField txtAmount = new JTextField("Enter amount");
-        txtAmount.setForeground(TEXT_GRAY);
+        PlaceholderTextField txtAmount = new PlaceholderTextField("Enter recipient name");
         styleTextField(txtAmount);
         panel.add(txtAmount);
         panel.add(Box.createVerticalStrut(25));
