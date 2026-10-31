@@ -1,13 +1,13 @@
 package main.controller;
 
-import main.model.Account;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import main.model.Account;
+import main.model.AccountActive;
 
 public class Accounts {
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/OnlineBanking";
@@ -60,6 +60,26 @@ public class Accounts {
 
         } catch (SQLException e) {
             System.out.println("L'utilisateur ne possede pas de compte" + e.getMessage());
+        }
+        return accounts;
+    }
+
+    public  static  List<AccountActive> getAllAccountsByUserIdAndType(int userId){
+
+        List<AccountActive> accounts = new ArrayList<>();
+        String queryRDBU = "SELECT accountNumber FROM Accounts WHERE userId = ? AND status = 'ACTIF'";
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(queryRDBU)) {
+            stmt.setInt(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    accounts.add(new AccountActive(
+                            rs.getString("accountNumber")));
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("L'utilisateur ne possede pas de compte actif" + e.getMessage());
         }
         return accounts;
     }
