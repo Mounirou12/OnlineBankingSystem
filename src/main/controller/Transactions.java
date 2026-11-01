@@ -49,7 +49,7 @@ public class Transactions {
         return null;
     }
 
-    private static boolean transferMoney(int sourceAccountId, String targetAccountNumber, double amount) {
+    public static boolean transferMoney(int sourceAccountId, String targetAccountNumber, double amount) {
         // 1. Vérifications de base
         if (amount <= 0) {
             System.out.println("Le montant doit etre superieur à 0.");
