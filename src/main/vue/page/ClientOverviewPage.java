@@ -2,6 +2,7 @@ package main.vue.page;
 
 import main.controller.Accounts;
 import main.controller.Session;
+import main.controller.Transactions;
 import main.controller.Users;
 import main.model.AccountActive;
 
@@ -170,33 +171,42 @@ public class ClientOverviewPage extends JPanel {
         // Champ From Account
         panel.add(createLabel("From Account"));
 
-// 1. Création d'un JComboBox vide
-        JComboBox<String> cbFromAccount = new JComboBox<>();
+// 1. Création du JComboBox typé avec AccountActive
+        JComboBox<AccountActive> cbFromAccount = new JComboBox<>();
         styleComboBox(cbFromAccount);
 
-// 2. Récupération de l'ID de l'utilisateur connecté (Adaptez selon votre classe Session)
+// On indique au ComboBox comment afficher un AccountActive (avec les étoiles)
+        cbFromAccount.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (value instanceof AccountActive) {
+                    AccountActive acc = (AccountActive) value;
+                    // Adaptez getAccountNumber() selon le nom exact de votre méthode dans AccountActive
+                    String rawNumber = acc.getAccountName();
+                    String maskedNumber = "•••• " + rawNumber.substring(Math.max(0, rawNumber.length() - 4));
+                    setText("Primary Account (" + maskedNumber + ")");
+                }
+                return this;
+            }
+        });
+
+// 2. Récupération de l'ID de l'utilisateur
         int currentUserId = Session.getCurrentUserId();
 
 // 3. Appel de votre méthode
         List<AccountActive> userAccounts = Accounts.getAllAccountsByUserIdAndType(currentUserId);
 
-// 4. Remplissage dynamique de la liste
+// 4. Remplissage (on ajoute l'objet complet, pas juste le texte)
         if (userAccounts != null && !userAccounts.isEmpty()) {
             for (AccountActive account : userAccounts) {
-                String rawNumber = account.getAccountName(); // Récupère le numéro
-
-                // On formate pour afficher seulement les 4 derniers chiffres (comme sur la maquette)
-                String maskedNumber = "•••• " + rawNumber.substring(Math.max(0, rawNumber.length() - 4));
-
-                // On ajoute au JComboBox
-                cbFromAccount.addItem("Primary Account (" + maskedNumber + ")");
+                cbFromAccount.addItem(account); // On ajoute l'objet !
             }
         } else {
-            // Si l'utilisateur n'a pas de compte, on met un texte par défaut
-            cbFromAccount.addItem("Aucun compte actif disponible");
+            // Si aucun compte, on laisse le combo vide, ou on gère ça autrement
         }
 
-// 5. Ajout du composant au panel
+// 5. Ajout au panel
         panel.add(cbFromAccount);
         panel.add(Box.createVerticalStrut(15));
 
@@ -218,6 +228,41 @@ public class ClientOverviewPage extends JPanel {
         JButton btnSend = createStyledButton("➤ Send Money", PRIMARY_BLUE, Color.WHITE);
         btnSend.setAlignmentX(Component.LEFT_ALIGNMENT);
         btnSend.setMaximumSize(new Dimension(Integer.MAX_VALUE, 45));
+        btnSend.addActionListener(e->{
+            AccountActive selectedAccount =(AccountActive) cbFromAccount.getSelectedItem();
+
+            if (selectedAccount == null){
+                JOptionPane.showMessageDialog(this, "Veuillez sélectionner un compte.", "Erreur", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+
+            // On extrait le vrai numéro de compte (sans les étoiles)
+            String sourceAccountNumber = selectedAccount.getAccountName();
+
+            // On récupère le destinataire et le montant
+            String targetAccountNumber = txtRecipient.getText().trim();
+            double amount;
+
+            try {
+                amount = Double.parseDouble(txtAmount.getText().trim());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Montant invalide.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Appel de votre méthode mise à jour
+            boolean success = Transactions.transferMoney(sourceAccountNumber,targetAccountNumber,amount);
+            if (success){
+                JOptionPane.showMessageDialog(this,"Transfert reussi!");
+                txtRecipient.setText("");
+                txtAmount.setText("");
+
+            }else{
+                JOptionPane.showMessageDialog(this, "Échec du transfert.", "Erreur", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
         panel.add(btnSend);
 
         return panel;
@@ -310,7 +355,7 @@ public class ClientOverviewPage extends JPanel {
     }
 
     // Style pour la ComboBox
-    private void styleComboBox(JComboBox<String> combo) {
+    private void styleComboBox(JComboBox<AccountActive> combo) {
         combo.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         combo.setBackground(Color.WHITE);
         combo.setBorder(BorderFactory.createCompoundBorder(
