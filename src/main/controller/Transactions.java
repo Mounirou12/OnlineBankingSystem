@@ -49,85 +49,101 @@ public class Transactions {
         return null;
     }
 
-    public static boolean transferMoney(int sourceAccountId, String targetAccountNumber, double amount) {
+    public static boolean transferMoney(String sourceAccountNumber, String targetAccountNumber, double amount) {
         // 1. Vérifications de base
         if (amount <= 0) {
-            System.out.println("Le montant doit etre superieur à 0.");
+            System.out.println("Le montant doit être supérieur à 0.");
             return false;
         }
-        String targetAccountIdStr = null;
+
         String targetName = getAccountOwnerName(targetAccountNumber);
-        String sourceName = getSourceAccountIdName(sourceAccountId);
+        String sourceName = getAccountOwnerName(sourceAccountNumber); // On réutilise la méthode existante
 
         if (targetName == null) {
             System.out.println("Erreur : Le numéro de compte destinataire n'existe pas.");
             return false;
         }
-
-        String queryFT = "SELECT id FROM Accounts WHERE accountNumber = ? ";
-        int targetAccountId = -1;
-        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-                PreparedStatement stmt = conn.prepareStatement(queryFT)) {
-            stmt.setString(1, targetAccountNumber);
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next())
-                    targetAccountId = rs.getInt("id");
-            }
-        } catch (SQLException e) {
-            return false;
-        }
-        if (sourceAccountId == targetAccountId) {
-            System.out.println("Erreur:Impossible de faire un virement vers soi-même.");
+        if (sourceName == null) {
+            System.out.println("Erreur : Le numéro de compte source n'existe pas.");
             return false;
         }
 
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            conn.setAutoCommit(false);
+            conn.setAutoCommit(false); // On commence la transaction
 
-            String checkSource = "SELECT balance, status FROM Accounts where id =?";
+            // A. Récupérer l'ID de la source et vérifier son statut/solde
+            int sourceAccountId = -1;
+            String checkSource = "SELECT id, balance, status FROM Accounts WHERE accountNumber = ?";
             try (PreparedStatement stmt = conn.prepareStatement(checkSource)) {
-                stmt.setInt(1, sourceAccountId);
+                stmt.setString(1, sourceAccountNumber);
                 try (ResultSet rs = stmt.executeQuery()) {
-                    if (!rs.next())
+                    if (!rs.next()) {
+                        System.out.println("Erreur : Compte source introuvable.");
+                        conn.rollback();
                         return false;
+                    }
+                    sourceAccountId = rs.getInt("id"); // On récupère l'ID ici
+
                     if (!"ACTIF".equals(rs.getString("status"))) {
                         System.out.println("Erreur : Compte source bloqué.");
+                        conn.rollback();
                         return false;
                     }
                     if (rs.getDouble("balance") < amount) {
                         System.out.println("Erreur : Solde insuffisant.");
+                        conn.rollback();
                         return false;
                     }
                 }
             }
-            // B. Débiter la source
-            String debit = "UPDATE Accounts SET balance = balance - ? WHERE id = ?";
+
+            // B. Récupérer l'ID de la cible
+            int targetAccountId = -1;
+            String queryFT = "SELECT id FROM Accounts WHERE accountNumber = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(queryFT)) {
+                stmt.setString(1, targetAccountNumber);
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        targetAccountId = rs.getInt("id");
+                    }
+                }
+            }
+
+            // Vérification de sécurité (ne pas envoyer à soi-même)
+            if (sourceAccountId == targetAccountId) {
+                System.out.println("Erreur : Impossible de faire un virement vers soi-même.");
+                conn.rollback();
+                return false;
+            }
+
+            // C. Débiter la source (en utilisant le numéro de compte pour la sécurité)
+            String debit = "UPDATE Accounts SET balance = balance - ? WHERE accountNumber = ?";
             try (PreparedStatement stmt = conn.prepareStatement(debit)) {
                 stmt.setDouble(1, amount);
-                stmt.setInt(2, sourceAccountId);
+                stmt.setString(2, sourceAccountNumber);
                 stmt.executeUpdate();
             }
 
-            // C. Créditer la cible
-            String credit = "UPDATE Accounts SET balance = balance + ? WHERE id = ?";
+            // D. Créditer la cible
+            String credit = "UPDATE Accounts SET balance = balance + ? WHERE accountNumber = ?";
             try (PreparedStatement stmt = conn.prepareStatement(credit)) {
                 stmt.setDouble(1, amount);
-                stmt.setInt(2, targetAccountId);
+                stmt.setString(2, targetAccountNumber);
                 stmt.executeUpdate();
             }
 
-            // D. Enregistrer la transaction (Débit)
+            // E. Enregistrer la transaction (Débit)
             String insertTxD = "INSERT INTO Transactions (accountId, type, amount, recipientName, status) VALUES (?, 'DEBIT', ?, ?, 'COMPLETED')";
             try (PreparedStatement stmt = conn.prepareStatement(insertTxD)) {
                 stmt.setInt(1, sourceAccountId);
                 stmt.setDouble(2, amount);
-                stmt.setString(3, targetName); // On utilise le nom récupéré automatiquement
+                stmt.setString(3, targetName);
                 stmt.executeUpdate();
             }
 
-            // E. ENregistrer la transaction (Credit)
+            // F. Enregistrer la transaction (Crédit)
             String insertTxC = "INSERT INTO Transactions (accountId, type, amount, recipientName, status) VALUES (?, 'CREDIT', ?, ?, 'COMPLETED')";
             try (PreparedStatement stmt = conn.prepareStatement(insertTxC)) {
                 stmt.setInt(1, targetAccountId);
@@ -135,13 +151,30 @@ public class Transactions {
                 stmt.setString(3, sourceName);
                 stmt.executeUpdate();
             }
-            conn.commit(); // On valide tout
+
+            conn.commit(); // Tout s'est bien passé, on valide
             return true;
+
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            if (conn != null) {
+                try {
+                    conn.rollback(); // Annuler en cas d'erreur SQL
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
-
     public static List<Transaction> getAllTransactionsByUserId(int userId) {
         List<Transaction> transactions = new ArrayList<>();
         String queryATU = "SELECT t.id, t.transactionDate, t.amount, t.type, t.recipientName, t.status, a.accountNumber "
