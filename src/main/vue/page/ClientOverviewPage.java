@@ -5,6 +5,7 @@ import main.controller.Session;
 import main.controller.Transactions;
 import main.controller.Users;
 import main.model.AccountActive;
+import main.model.Transaction;
 
 import javax.swing.*;
 
@@ -138,11 +139,14 @@ public class ClientOverviewPage extends JPanel {
         recentTransCard.add(Box.createVerticalStrut(15));
 
         // Lignes de transactions
-        recentTransCard.add(createTransactionRow("AJ", "Alex Johnson", "2025-05-12", "$1,200.00", "Completed", new Color(0xEB, 0xF4, 0xFF)));
-        recentTransCard.add(Box.createVerticalStrut(10));
-        recentTransCard.add(createTransactionRow("TS", "Taylor Smith", "2025-05-10", "$850.50", "Completed", new Color(0xEB, 0xF4, 0xFF)));
-        recentTransCard.add(Box.createVerticalStrut(10));
-        recentTransCard.add(createTransactionRow("JL", "Jordan Lee", "2025-05-08", "$2,500.00", "Completed", new Color(0xEB, 0xF4, 0xFF)));
+        List<Transaction> recentTransactions = Transactions.getAllTransactionsByUserIdLimit(Session.getCurrentUserId());
+        for (Transaction tx : recentTransactions){
+            recentTransCard.add(createTransactionRow(tx));
+            recentTransCard.add(Box.createVerticalStrut(10));
+        }
+        if (recentTransactions.isEmpty()){
+            recentTransCard.add(new JLabel("Aucune transaction récente."));
+        }
 
         panel.add(balanceCard);
         panel.add(recentTransCard);
@@ -273,10 +277,22 @@ public class ClientOverviewPage extends JPanel {
     // =========================================================
 
     // Créer une ligne de transaction
-    private JPanel createTransactionRow(String initials, String name, String date, String amount, String status, Color avatarBg) {
+    private JPanel createTransactionRow(Transaction tx) {
+        // 1. Extraire les données de l'objet Transaction
+        String name = tx.getDestinataire();
+        String initials = getInitials(name); // Utilisation de la méthode utilitaire
+        String date = String.valueOf(tx.getTransactionDate()); // Si c'est déjà un String formaté
+        String amount = String.format("%,.2f €", tx.getAmount()); // Formatage avec séparateur de milliers
+        String status = tx.getStatus();
+
+        // Choisir la couleur du statut
+        Color statusColor = "COMPLETED".equalsIgnoreCase(status) ? GREEN_SUCCESS : new Color(0xFF, 0x8C, 0x00);
+
+        // 2. Création de l'interface
         JPanel row = new JPanel(new BorderLayout());
         row.setOpaque(false);
         row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+        row.setBorder(new EmptyBorder(5, 0, 5, 0)); // Ajout d'un peu d'espace vertical
 
         // Gauche : Avatar + Nom
         JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
@@ -285,11 +301,10 @@ public class ClientOverviewPage extends JPanel {
         JLabel avatar = new JLabel(initials, SwingConstants.CENTER);
         avatar.setFont(new Font("Segoe UI", Font.BOLD, 12));
         avatar.setForeground(PRIMARY_BLUE);
-        avatar.setBackground(avatarBg);
+        avatar.setBackground(new Color(0xEB, 0xF4, 0xFF)); // Fond bleu clair
         avatar.setOpaque(true);
         avatar.setPreferredSize(new Dimension(35, 35));
-        // Arrondir l'avatar (pseudo-code visuel, on utilise une bordure ronde)
-        avatar.setBorder(BorderFactory.createLineBorder(avatarBg, 1, true));
+        avatar.setBorder(BorderFactory.createLineBorder(new Color(0xEB, 0xF4, 0xFF), 1, true));
 
         JPanel namePanel = new JPanel();
         namePanel.setLayout(new BoxLayout(namePanel, BoxLayout.Y_AXIS));
@@ -321,7 +336,7 @@ public class ClientOverviewPage extends JPanel {
 
         JLabel lblStatus = new JLabel(status);
         lblStatus.setFont(new Font("Segoe UI", Font.PLAIN, 11));
-        lblStatus.setForeground(GREEN_SUCCESS);
+        lblStatus.setForeground(statusColor); // Couleur dynamique
         lblStatus.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
         rightPanel.add(lblAmount);
@@ -329,7 +344,18 @@ public class ClientOverviewPage extends JPanel {
 
         row.add(leftPanel, BorderLayout.WEST);
         row.add(rightPanel, BorderLayout.EAST);
+
         return row;
+    }
+    private String getInitials(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            return "??";
+        }
+        String[] parts = name.trim().split("\\s+");
+        if (parts.length == 1) {
+            return parts[0].substring(0, 1).toUpperCase();
+        }
+        return (parts[0].substring(0, 1) + parts[parts.length - 1].substring(0, 1)).toUpperCase();
     }
 
     // Style pour les labels de formulaire
