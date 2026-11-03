@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5143157c-8033-42ae-bbff-43b2222b6964" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OnlineBankingSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OnlineBankingSystem.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main/controller/Accounts.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/controller/Accounts.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main/controller/Session.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/controller/Session.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main/controller/Transactions.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/controller/Transactions.class" afterDir="false" />
@@ -19,7 +18,9 @@
       <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientTransactionsPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientTransactionsPage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/page/ClientTransfertPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/page/ClientTransfertPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/controller/Transactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/controller/Transactions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/page/ClientOverviewPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/page/ClientOverviewPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,61 +71,61 @@
 }</component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="5.7870409127326615E-18" />
-      <entry key="MS500" value="6.497384327803042E-4" />
-      <entry key="S2" value="0.35029310867402647" />
-      <entry key="S5" value="1.2660013322053003" />
-      <entry key="S10" value="1.9476014831309578" />
-      <entry key="S30" value="2.59727779550555" />
-      <entry key="S60" value="2.79133508183571" />
-      <entry key="M2" value="2.893774245869006" />
-      <entry key="M5" value="2.9570463994236293" />
-      <entry key="M10" value="2.9784459390796085" />
-      <entry key="M15" value="2.9858322007897193" />
-      <entry key="M30" value="3.0841596646547877" />
-      <entry key="H1" value="5.156572400964803" />
-      <entry key="H2" value="13.88259483547235" />
-      <entry key="H4" value="27.627351617040805" />
-      <entry key="D1" value="51.8187190655282" />
-      <entry key="W1" value="57.91236545246058" />
+      <entry key="MS100" value="5.8800000214037116E-86" />
+      <entry key="MS500" value="8.992396864872091E-18" />
+      <entry key="S2" value="5.480271018303224E-5" />
+      <entry key="S5" value="0.020960628327029412" />
+      <entry key="S10" value="0.18448512681294102" />
+      <entry key="S30" value="1.1685849829395007" />
+      <entry key="S60" value="2.282848716021425" />
+      <entry key="M2" value="3.6323721053326783" />
+      <entry key="M5" value="6.189607308886607" />
+      <entry key="M10" value="8.680143774142149" />
+      <entry key="M15" value="10.01138486094143" />
+      <entry key="M30" value="11.80658293998295" />
+      <entry key="H1" value="14.644741806521836" />
+      <entry key="H2" value="23.45323315434668" />
+      <entry key="H4" value="37.38019120414253" />
+      <entry key="D1" value="62.452788125420625" />
+      <entry key="W1" value="68.85436163790774" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000000002072431" />
-      <entry key="S2" value="1.0041131958979932" />
-      <entry key="S5" value="1.1626399071898037" />
-      <entry key="S10" value="1.6536526700941436" />
-      <entry key="S30" value="2.7918024607362906" />
-      <entry key="S60" value="3.4258870691381293" />
-      <entry key="M2" value="3.976590080258404" />
-      <entry key="M5" value="4.500972155759131" />
-      <entry key="M10" value="4.7313447532502835" />
-      <entry key="M15" value="4.816378527567149" />
-      <entry key="M30" value="4.965583453255039" />
-      <entry key="H1" value="6.494150855033742" />
-      <entry key="H2" value="12.979800580733349" />
-      <entry key="H4" value="23.30073280068124" />
-      <entry key="D1" value="41.56587524659844" />
-      <entry key="W1" value="46.176735024743486" />
+      <entry key="MS500" value="1.0000000000000282" />
+      <entry key="S2" value="1.0006161401269138" />
+      <entry key="S5" value="1.0896494981892182" />
+      <entry key="S10" value="1.59574296312331" />
+      <entry key="S30" value="4.563574744676024" />
+      <entry key="S60" value="8.324498238533819" />
+      <entry key="M2" value="12.754355835598771" />
+      <entry key="M5" value="18.071176254026874" />
+      <entry key="M10" value="21.360654050472018" />
+      <entry key="M15" value="22.87479686643162" />
+      <entry key="M30" value="24.760685314807144" />
+      <entry key="H1" value="27.116281264677617" />
+      <entry key="H2" value="33.79044868776363" />
+      <entry key="H4" value="44.30635637425261" />
+      <entry key="D1" value="63.28083159444494" />
+      <entry key="W1" value="68.13168141239518" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="3.533772674868988E-11" />
-      <entry key="MS500" value="0.008660060576500478" />
-      <entry key="S2" value="0.5990594905650923" />
-      <entry key="S5" value="1.9092453039957908" />
-      <entry key="S10" value="3.2295224341579254" />
-      <entry key="S30" value="5.202226205818432" />
-      <entry key="S60" value="6.106355566812668" />
-      <entry key="M2" value="6.806554416058943" />
-      <entry key="M5" value="7.429058425612539" />
-      <entry key="M10" value="7.694529084114895" />
-      <entry key="M15" value="7.791841790403379" />
-      <entry key="M30" value="8.044342767573822" />
-      <entry key="H1" value="11.646419004395877" />
-      <entry key="H2" value="26.856598992012326" />
-      <entry key="H4" value="50.922196241146864" />
-      <entry key="D1" value="93.38271334434255" />
-      <entry key="W1" value="104.08879901304093" />
+      <entry key="MS100" value="3.1890730363230787E-12" />
+      <entry key="MS500" value="0.0050203372557431234" />
+      <entry key="S2" value="0.2665879115587463" />
+      <entry key="S5" value="0.6772755945175049" />
+      <entry key="S10" value="1.4603903749780842" />
+      <entry key="S30" value="5.452468008493449" />
+      <entry key="S60" value="10.356247703605096" />
+      <entry key="M2" value="16.192401463084966" />
+      <entry key="M5" value="24.147501851211707" />
+      <entry key="M10" value="29.972601268924695" />
+      <entry key="M15" value="32.83712421930439" />
+      <entry key="M30" value="36.540460459052746" />
+      <entry key="H1" value="41.745616074959166" />
+      <entry key="H2" value="57.23237939331631" />
+      <entry key="H4" value="81.67789435457526" />
+      <entry key="D1" value="125.73125010480742" />
+      <entry key="W1" value="136.98567026812472" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -137,34 +138,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Accounts.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginPage.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.Transactions.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Users.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/mounirou/Downloads/jbcrypt-0.4.jar&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;python.packages.toolwindow.project.migrated.to.right.top.v2&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Accounts.executor": "Run",
+    "Application.LoginPage.executor": "Run",
+    "Application.Transactions.executor": "Run",
+    "Application.Users.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/mounirou/Downloads/jbcrypt-0.4.jar",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.LoginPage">
     <configuration name="Accounts" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.controller.Accounts" />
