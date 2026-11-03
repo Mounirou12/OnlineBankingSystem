@@ -190,7 +190,36 @@ public class Transactions {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     transactions.add(new Transaction(
-                            rs.getInt("id"),
+                            rs.getDate("transactionDate"),
+                            rs.getDouble("amount"),
+                            rs.getString("type"),
+                            rs.getString("recipientName"),
+                            rs.getString("status"),
+                            rs.getString("accountNumber")));
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return transactions;
+    }
+
+    public static List<Transaction> getAllTransactionsByUserIdLimit(int userId) {
+        List<Transaction> transactions = new ArrayList<>();
+        String queryATU = "SELECT  t.transactionDate, t.amount, t.type, t.recipientName, t.status, a.accountNumber "
+                +
+                "FROM Transactions t " +
+                "JOIN Accounts a ON t.accountId = a.id " +
+                "JOIN Users u ON a.userId = u.id " +
+                "WHERE u.id = ? " +
+                "ORDER BY t.transactionDate DESC "+
+                "LIMIT 3";
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(queryATU)) {
+            stmt.setInt(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    transactions.add(new Transaction(
                             rs.getDate("transactionDate"),
                             rs.getDouble("amount"),
                             rs.getString("type"),
