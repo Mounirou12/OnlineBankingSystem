@@ -8,6 +8,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import main.model.Account;
 import main.model.AccountActive;
+import main.model.AccountPrimary;
 
 public class Accounts {
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/OnlineBanking";
@@ -82,6 +83,28 @@ public class Accounts {
             System.out.println("L'utilisateur ne possede pas de compte actif" + e.getMessage());
         }
         return accounts;
+    }
+
+    public  static  List<AccountPrimary> getPrimaryAccount(int userId){
+
+        List<AccountPrimary> account = new ArrayList<>();
+        String queryRDBU = "SELECT accountNumber, balance,status FROM Accounts WHERE userId = ? AND status = 'ACTIF' LIMIT 1";
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(queryRDBU)) {
+            stmt.setInt(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    account.add(new AccountPrimary(
+                            rs.getString("accountNumber"),
+                            rs.getDouble("balance"),
+                            rs.getString("status")));
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("L'utilisateur ne possede pas de compte actif" + e.getMessage());
+        }
+        return account;
     }
 
     public static Account getAccountByIdAndUserId(int id, int userId) {
