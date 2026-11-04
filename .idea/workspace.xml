@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5143157c-8033-42ae-bbff-43b2222b6964" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OnlineBankingSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OnlineBankingSystem.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main/controller/Accounts.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/controller/Accounts.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main/controller/Session.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/controller/Session.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main/controller/Transactions.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/controller/Transactions.class" afterDir="false" />
@@ -18,8 +19,7 @@
       <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientTransactionsPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientTransactionsPage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/controller/Transactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/controller/Transactions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/model/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/controller/Accounts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/controller/Accounts.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/vue/page/ClientOverviewPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/page/ClientOverviewPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,61 +71,61 @@
 }</component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="5.8800000214037116E-86" />
-      <entry key="MS500" value="8.992396864872091E-18" />
-      <entry key="S2" value="5.480271018303224E-5" />
-      <entry key="S5" value="0.020960628327029412" />
-      <entry key="S10" value="0.18448512681294102" />
-      <entry key="S30" value="1.1685849829395007" />
-      <entry key="S60" value="2.282848716021425" />
-      <entry key="M2" value="3.6323721053326783" />
-      <entry key="M5" value="6.189607308886607" />
-      <entry key="M10" value="8.680143774142149" />
-      <entry key="M15" value="10.01138486094143" />
-      <entry key="M30" value="11.80658293998295" />
-      <entry key="H1" value="14.644741806521836" />
-      <entry key="H2" value="23.45323315434668" />
-      <entry key="H4" value="37.38019120414253" />
-      <entry key="D1" value="62.452788125420625" />
-      <entry key="W1" value="68.85436163790774" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="7.762187627370721E-77" />
+      <entry key="S2" value="9.386340337619698E-20" />
+      <entry key="S5" value="2.4618044792223513E-8" />
+      <entry key="S10" value="1.7535863280797602E-4" />
+      <entry key="S30" value="0.10886189667308299" />
+      <entry key="S60" value="0.6541432966260281" />
+      <entry key="M2" value="2.0944141137377215" />
+      <entry key="M5" value="7.997600892846864" />
+      <entry key="M10" value="16.022212207678837" />
+      <entry key="M15" value="21.020187999713716" />
+      <entry key="M30" value="28.295528489642546" />
+      <entry key="H1" value="34.635651176849024" />
+      <entry key="H2" value="45.13898788849649" />
+      <entry key="H4" value="60.11274352038317" />
+      <entry key="D1" value="86.8919696268493" />
+      <entry key="W1" value="93.76754972239776" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000000000000282" />
-      <entry key="S2" value="1.0006161401269138" />
-      <entry key="S5" value="1.0896494981892182" />
-      <entry key="S10" value="1.59574296312331" />
-      <entry key="S30" value="4.563574744676024" />
-      <entry key="S60" value="8.324498238533819" />
-      <entry key="M2" value="12.754355835598771" />
-      <entry key="M5" value="18.071176254026874" />
-      <entry key="M10" value="21.360654050472018" />
-      <entry key="M15" value="22.87479686643162" />
-      <entry key="M30" value="24.760685314807144" />
-      <entry key="H1" value="27.116281264677617" />
-      <entry key="H2" value="33.79044868776363" />
-      <entry key="H4" value="44.30635637425261" />
-      <entry key="D1" value="63.28083159444494" />
-      <entry key="W1" value="68.13168141239518" />
+      <entry key="MS500" value="1.000023256604467" />
+      <entry key="S2" value="1.0694442955409433" />
+      <entry key="S5" value="1.3440763971962073" />
+      <entry key="S10" value="1.5873084434088087" />
+      <entry key="S30" value="2.0218630780489004" />
+      <entry key="S60" value="2.675967983580191" />
+      <entry key="M2" value="3.942464242950829" />
+      <entry key="M5" value="9.75378985763152" />
+      <entry key="M10" value="18.66195509699027" />
+      <entry key="M15" value="24.37537879045967" />
+      <entry key="M30" value="32.71309796294294" />
+      <entry key="H1" value="39.33624480996022" />
+      <entry key="H2" value="48.24457291090017" />
+      <entry key="H4" value="60.06144655114826" />
+      <entry key="D1" value="80.76668049870791" />
+      <entry key="W1" value="86.05311915414899" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="3.1890730363230787E-12" />
-      <entry key="MS500" value="0.0050203372557431234" />
-      <entry key="S2" value="0.2665879115587463" />
-      <entry key="S5" value="0.6772755945175049" />
-      <entry key="S10" value="1.4603903749780842" />
-      <entry key="S30" value="5.452468008493449" />
-      <entry key="S60" value="10.356247703605096" />
-      <entry key="M2" value="16.192401463084966" />
-      <entry key="M5" value="24.147501851211707" />
-      <entry key="M10" value="29.972601268924695" />
-      <entry key="M15" value="32.83712421930439" />
-      <entry key="M30" value="36.540460459052746" />
-      <entry key="H1" value="41.745616074959166" />
-      <entry key="H2" value="57.23237939331631" />
-      <entry key="H4" value="81.67789435457526" />
-      <entry key="D1" value="125.73125010480742" />
-      <entry key="W1" value="136.98567026812472" />
+      <entry key="MS100" value="9.224206170692381E-8" />
+      <entry key="MS500" value="0.039175822035638894" />
+      <entry key="S2" value="0.4862041113900921" />
+      <entry key="S5" value="1.0028212857008156" />
+      <entry key="S10" value="1.3800122234043644" />
+      <entry key="S30" value="2.0420735491402233" />
+      <entry key="S60" value="3.269167441027391" />
+      <entry key="M2" value="5.983793358067497" />
+      <entry key="M5" value="17.681953722843918" />
+      <entry key="M10" value="34.61390991272087" />
+      <entry key="M15" value="45.3338914273534" />
+      <entry key="M30" value="60.967086850875674" />
+      <entry key="H1" value="73.94645833164326" />
+      <entry key="H2" value="93.36662836677554" />
+      <entry key="H4" value="120.16253475606256" />
+      <entry key="D1" value="167.65572455018614" />
+      <entry key="W1" value="179.82021435429746" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -141,7 +141,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Accounts.executor": "Run",
-    "Application.LoginPage.executor": "Run",
+    "Application.LoginPage.executor": "Debug",
     "Application.Transactions.executor": "Run",
     "Application.Users.executor": "Run",
     "Downloaded.Files.Path.Enabled": "true",
