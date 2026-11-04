@@ -46,13 +46,13 @@ public class Accounts {
             stmt.setInt(1, userId);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    String rawAccountNumber = rs.getString("accountNumber");
-                    String maskedNumber = "**** "
-                            + rawAccountNumber.substring(Math.max(0, rawAccountNumber.length() - 4));
+                    //String rawAccountNumber = rs.getString("accountNumber");
+                    //String maskedNumber = "**** "
+                      //      + rawAccountNumber.substring(Math.max(0, rawAccountNumber.length() - 4));
                     accounts.add(new Account(
                             rs.getInt("id"),
                             rs.getInt("userId"),
-                            maskedNumber,
+                            rs.getString("accountNumber"),
                             rs.getString("accountType"),
                             rs.getDouble("balance"),
                             rs.getString("status")));
