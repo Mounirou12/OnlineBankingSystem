@@ -5,6 +5,7 @@ import main.controller.Session;
 import main.controller.Transactions;
 import main.controller.Users;
 import main.model.AccountActive;
+import main.model.AccountPrimary;
 import main.model.Transaction;
 
 import javax.swing.*;
@@ -66,6 +67,34 @@ public class ClientOverviewPage extends JPanel {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setOpaque(false);
 
+        // 1. Récupérer les données du compte principal depuis la base
+        int userId = Session.getCurrentUserId();
+        List<AccountPrimary> primaryAccounts = Accounts.getPrimaryAccount(userId);
+
+        // Valeurs par défaut au cas où l'utilisateur n'a pas de compte
+        String accountNumber = "Aucun compte";
+        String maskedNumber = "•••• ----";
+        String balanceText = "0.00";
+        String statusText = "Inactif";
+        Color statusColor = TEXT_GRAY;
+
+        if (primaryAccounts != null && !primaryAccounts.isEmpty()) {
+            AccountPrimary primary = primaryAccounts.get(0);
+            accountNumber = primary.getAccountName();
+
+            // Masquer le numéro (ex: "123456789" -> "•••• 6789")
+            maskedNumber = "•••• " + accountNumber.substring(Math.max(0, accountNumber.length() - 4));
+
+            // Formater le solde (ex: "48250.5" -> "48 250.50")
+            balanceText = String.format("%,.2f", primary.getAmount()).replace(',', ' ');
+
+            // Statut
+            statusText = "● " + primary.getStatus();
+            if ("ACTIF".equalsIgnoreCase(primary.getStatus())) {
+                statusColor = GREEN_SUCCESS;
+            }
+        }
+
         // --- Carte Solde ---
         JPanel balanceCard = new JPanel(new BorderLayout());
         balanceCard.setBackground(Color.WHITE);
@@ -77,13 +106,14 @@ public class ClientOverviewPage extends JPanel {
         // En-tête de la carte Solde
         JPanel balanceHeader = new JPanel(new BorderLayout());
         balanceHeader.setOpaque(false);
+
         JLabel lblAccount = new JLabel("Primary Account");
         lblAccount.setFont(new Font("Segoe UI", Font.BOLD, 14));
         lblAccount.setForeground(TEXT_DARK);
 
-        JLabel lblActive = new JLabel("● Active");
+        JLabel lblActive = new JLabel(statusText);
         lblActive.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        lblActive.setForeground(GREEN_SUCCESS);
+        lblActive.setForeground(statusColor);
 
         balanceHeader.add(lblAccount, BorderLayout.WEST);
         balanceHeader.add(lblActive, BorderLayout.EAST);
@@ -94,26 +124,21 @@ public class ClientOverviewPage extends JPanel {
         amountPanel.setOpaque(false);
         amountPanel.setBorder(new EmptyBorder(10, 0, 15, 0));
 
-        JLabel lblAmount = new JLabel("48,250.00");
+        JLabel lblAmount = new JLabel(balanceText);
         lblAmount.setFont(new Font("Segoe UI", Font.BOLD, 32));
         lblAmount.setForeground(TEXT_DARK);
 
-        JLabel lblAccNum = new JLabel("•••• 4821");
+        JLabel lblAccNum = new JLabel(maskedNumber);
         lblAccNum.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         lblAccNum.setForeground(TEXT_GRAY);
 
         amountPanel.add(lblAmount);
         amountPanel.add(lblAccNum);
 
-        // Boutons d'action
+        // Boutons d'action (Optionnel : vous pouvez les remettre ici)
         JPanel actionPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
         actionPanel.setOpaque(false);
-
-        JButton btnTransfer = createStyledButton("↗ Transfer Money", PRIMARY_BLUE, Color.WHITE);
-        JButton btnStatement = createStyledButton("📄 View Statement", new Color(0xEB, 0xF4, 0xFF), PRIMARY_BLUE);
-
-        actionPanel.add(btnTransfer);
-        actionPanel.add(btnStatement);
+        // Vous pouvez ajouter vos boutons "Transférer" ici si vous le souhaitez
 
         balanceCard.add(balanceHeader, BorderLayout.NORTH);
         balanceCard.add(amountPanel, BorderLayout.CENTER);
@@ -124,7 +149,7 @@ public class ClientOverviewPage extends JPanel {
         recentTransCard.setLayout(new BoxLayout(recentTransCard, BoxLayout.Y_AXIS));
         recentTransCard.setBackground(Color.WHITE);
         recentTransCard.setBorder(BorderFactory.createCompoundBorder(
-                new EmptyBorder(20, 0, 0, 0), // Marge par rapport à la carte du haut
+                new EmptyBorder(20, 0, 0, 0),
                 BorderFactory.createCompoundBorder(
                         BorderFactory.createLineBorder(new Color(0xE0, 0xE0, 0xE0), 1, true),
                         new EmptyBorder(15, 15, 15, 15)
@@ -139,20 +164,22 @@ public class ClientOverviewPage extends JPanel {
         recentTransCard.add(Box.createVerticalStrut(15));
 
         // Lignes de transactions
-        List<Transaction> recentTransactions = Transactions.getAllTransactionsByUserIdLimit(Session.getCurrentUserId());
+        List<Transaction> recentTransactions = Transactions.getAllTransactionsByUserIdLimit(userId);
         for (Transaction tx : recentTransactions){
             recentTransCard.add(createTransactionRow(tx));
             recentTransCard.add(Box.createVerticalStrut(10));
         }
         if (recentTransactions.isEmpty()){
-            recentTransCard.add(new JLabel("Aucune transaction récente."));
+            JLabel lblEmpty = new JLabel("Aucune transaction récente.");
+            lblEmpty.setFont(new Font("Segoe UI", Font.ITALIC, 12));
+            lblEmpty.setForeground(TEXT_GRAY);
+            recentTransCard.add(lblEmpty);
         }
 
         panel.add(balanceCard);
         panel.add(recentTransCard);
         return panel;
     }
-
     // =========================================================
     // PANEL 2 : Quick Transfer
     // =========================================================
