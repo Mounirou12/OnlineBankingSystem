@@ -59,7 +59,7 @@ public class ClientTransfertPage extends JPanel {
 
             JLabel title = new JLabel("Effectuer un transfert");
             title.setFont(new Font("Segoe UI", Font.BOLD, 24));
-            title.setForeground(Color.WHITE); // Corrigé : le texte doit être blanc sur fond bleu
+            title.setForeground(Color.BLACK); // Corrigé : le texte doit être blanc sur fond bleu
 
             JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 0));
             leftPanel.setOpaque(false);
