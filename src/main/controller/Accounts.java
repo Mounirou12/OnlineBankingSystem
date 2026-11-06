@@ -15,8 +15,35 @@ public class Accounts {
     private static final String USERNAME = "mounir";
     private static final String PASSWORD = "agnila10";
 
+    private static boolean canCreateAccount(int userId){
+        String sqlcount = "SELECT COUNT(*) FROM Accounts "
+                +"WHERE userId = ?";
+        try( Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        PreparedStatement stmt = conn.prepareStatement(sqlcount)) {
+        stmt.setInt(1,userId);
+        try (ResultSet rs = stmt.executeQuery()){
+            if (rs.next()){
+                int count  = rs.getInt(1);
+                if (count >=3){
+                    System.out.println("l'utilisateur " + userId
+                            + " a déjà " + count + " comptes bancaires (max 2).");
+                    return false;
+                }
+            }
+        }
+        } catch (SQLException e) {
+            return false;
+        }
+        return  true;
+    }
+
     public static boolean insertAccount(int userId, String accountNumber, String accountType, long balance,
             String status) {
+        if (!canCreateAccount(userId)){
+            System.out.println("Creation de compte refusée : l'utilisateur " + userId
+                    + " possede deja le maximum de compte qu'il faut dans son compte.");
+            return false;
+        }
         String queryCr = "INSERT INTO Accounts (userId,accountNumber,accountType,balance,status) VALUES (?,?,?,?,?)";
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
                 PreparedStatement stmt = conn.prepareStatement(queryCr)) {
@@ -25,8 +52,8 @@ public class Accounts {
                     .mapToObj(String::valueOf)
                     .collect(Collectors.joining())
                     .replaceAll("(.{4})(?!$)", "$1 ");
-
             accountNumber = generateAccountNumber.apply(16);
+
             stmt.setInt(1, userId);
             stmt.setString(2, accountNumber);
             stmt.setString(3, accountType);
