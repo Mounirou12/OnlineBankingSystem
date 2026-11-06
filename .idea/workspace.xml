@@ -1,53 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="5143157c-8033-42ae-bbff-43b2222b6964" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OnlineBankingSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OnlineBankingSystem.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/controller/Accounts.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/controller/Accounts.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/controller/Session.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/controller/Session.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/controller/Transactions.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/controller/Transactions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/controller/Users.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/controller/Users.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/model/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/model/Account.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/model/AccountActive.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/model/AccountActive.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/model/AccountPrimary.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/model/AccountPrimary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/model/Transaction.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/model/Transaction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/AccueilPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/AccueilPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/LoginPage$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/LoginPage$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/LoginPage$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/LoginPage$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/LoginPage$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/LoginPage$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/LoginPage$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/LoginPage$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/LoginPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/LoginPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ChangePasswordDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ChangePasswordDialog$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ChangePasswordDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ChangePasswordDialog$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ChangePasswordDialog$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ChangePasswordDialog$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ChangePasswordDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ChangePasswordDialog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientAccountsPage$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientAccountsPage$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientAccountsPage$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientAccountsPage$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientAccountsPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientAccountsPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientTransactionsPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientTransactionsPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/CreateUserDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/CreateUserDialog$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/CreateUserDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/CreateUserDialog$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/CreateUserDialog$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/CreateUserDialog$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/CreateUserDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/CreateUserDialog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/PlaceholderTextField.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/PlaceholderTextField.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/page/ClientTransactionsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/page/ClientTransactionsPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/controller/Accounts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/controller/Accounts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/vue/page/ClientAccountsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/page/ClientAccountsPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,60 +59,60 @@
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="1.2859798619623396E-127" />
-      <entry key="S2" value="1.8936896477888484E-32" />
-      <entry key="S5" value="2.0567360516228686E-13" />
-      <entry key="S10" value="5.06861906027463E-7" />
-      <entry key="S30" value="0.015507081301501954" />
-      <entry key="S60" value="0.24688799848865917" />
-      <entry key="M2" value="1.2866964348211178" />
-      <entry key="M5" value="6.581503920024334" />
-      <entry key="M10" value="14.534670401616722" />
-      <entry key="M15" value="19.698133124245416" />
-      <entry key="M30" value="27.391262252177068" />
-      <entry key="H1" value="34.077715681908934" />
-      <entry key="H2" value="44.77394650910611" />
-      <entry key="H4" value="59.86918263226832" />
-      <entry key="D1" value="86.83319311943443" />
-      <entry key="W1" value="93.75848604168897" />
+      <entry key="MS500" value="7.8118705113629E-144" />
+      <entry key="S2" value="3.013975344925143E-36" />
+      <entry key="S5" value="1.2276208625386947E-14" />
+      <entry key="S10" value="2.312248977283124E-7" />
+      <entry key="S30" value="0.020385254328536946" />
+      <entry key="S60" value="0.38449867520297365" />
+      <entry key="M2" value="1.898375906652327" />
+      <entry key="M5" value="7.045096043275691" />
+      <entry key="M10" value="15.31148357344352" />
+      <entry key="M15" value="21.837689277991615" />
+      <entry key="M30" value="33.21457668246219" />
+      <entry key="H1" value="43.29056232359417" />
+      <entry key="H2" value="56.0417246317469" />
+      <entry key="H4" value="72.43880145608465" />
+      <entry key="D1" value="101.2613932533597" />
+      <entry key="W1" value="108.67067832233595" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="1.0" />
       <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0000555487652647" />
-      <entry key="S5" value="1.0314442118806457" />
-      <entry key="S10" value="1.3130620025570199" />
-      <entry key="S30" value="3.175626180290471" />
-      <entry key="S60" value="5.281569728340862" />
-      <entry key="M2" value="7.819951425456332" />
-      <entry key="M5" value="14.316175102200889" />
-      <entry key="M10" value="23.561172827343107" />
-      <entry key="M15" value="29.593896026608938" />
-      <entry key="M30" value="38.54194430081256" />
-      <entry key="H1" value="45.639351068107516" />
-      <entry key="H2" value="54.82270142262426" />
-      <entry key="H4" value="66.80221183663492" />
-      <entry key="D1" value="87.70939703004036" />
-      <entry key="W1" value="93.04442246229262" />
+      <entry key="S2" value="1.0000000597036383" />
+      <entry key="S5" value="1.002221742297856" />
+      <entry key="S10" value="1.079827210726538" />
+      <entry key="S30" value="2.0413585735521673" />
+      <entry key="S60" value="3.872899774652914" />
+      <entry key="M2" value="8.02594968033818" />
+      <entry key="M5" value="18.378388897503314" />
+      <entry key="M10" value="31.037964759099495" />
+      <entry key="M15" value="40.02452732546394" />
+      <entry key="M30" value="54.90053034634925" />
+      <entry key="H1" value="66.96985158742497" />
+      <entry key="H2" value="79.22786113680054" />
+      <entry key="H4" value="93.04456866902186" />
+      <entry key="D1" value="116.11863954009176" />
+      <entry key="W1" value="121.95526506940723" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="6.327206007495431E-6" />
-      <entry key="MS500" value="0.09125200066590758" />
-      <entry key="S2" value="0.5496472770203998" />
-      <entry key="S5" value="0.8104235454877258" />
-      <entry key="S10" value="1.1538229994043567" />
-      <entry key="S30" value="3.0266808259012854" />
-      <entry key="S60" value="5.380707237768708" />
-      <entry key="M2" value="8.990745331172322" />
-      <entry key="M5" value="20.800412817996584" />
-      <entry key="M10" value="38.01072150612752" />
-      <entry key="M15" value="49.219664301682904" />
-      <entry key="M30" value="65.88555083814386" />
-      <entry key="H1" value="79.68827640382412" />
-      <entry key="H2" value="99.57796094085688" />
-      <entry key="H4" value="126.65883805339877" />
-      <entry key="D1" value="174.5395081398027" />
-      <entry key="W1" value="186.80243138639094" />
+      <entry key="MS100" value="4.280301373613453E-4" />
+      <entry key="MS500" value="0.21197999115828695" />
+      <entry key="S2" value="0.6785373263205308" />
+      <entry key="S5" value="0.8581968081461308" />
+      <entry key="S10" value="0.9989873020555776" />
+      <entry key="S30" value="2.007224900850969" />
+      <entry key="S60" value="4.19950322474733" />
+      <entry key="M2" value="9.854596966271048" />
+      <entry key="M5" value="25.345086549715496" />
+      <entry key="M10" value="46.270998729527975" />
+      <entry key="M15" value="61.78959116127742" />
+      <entry key="M30" value="88.06132902108833" />
+      <entry key="H1" value="110.2258798139114" />
+      <entry key="H2" value="135.24724048306396" />
+      <entry key="H4" value="165.4687398969456" />
+      <entry key="D1" value="217.3765440570892" />
+      <entry key="W1" value="230.62540581079958" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -165,34 +125,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Accounts.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LoginPage.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.Transactions.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Users.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/mounirou/Downloads/jbcrypt-0.4.jar&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;python.packages.toolwindow.project.migrated.to.right.top.v2&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Accounts.executor": "Run",
+    "Application.LoginPage.executor": "Debug",
+    "Application.Transactions.executor": "Run",
+    "Application.Users.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/mounirou/Downloads/jbcrypt-0.4.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.LoginPage">
     <configuration name="Accounts" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.controller.Accounts" />
@@ -258,8 +222,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-2df11533d9fe-intellij.indexing.shared.core-IU-262.11879.100" />
-        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.11879.100" />
+        <option value="bundled-jdk-30f59d01ecdd-ac68fc9d2b05-intellij.indexing.shared.core-IU-263.7307.200" />
       </set>
     </attachedChunks>
   </component>
