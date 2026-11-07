@@ -34,6 +34,18 @@ public class ClientInfoPage extends JPanel {
         // 2. Carte centrale (Détails)
         add(createDetailsCard(), BorderLayout.CENTER);
     }
+    private String formatDateFr(LocalDate date) {
+        if (date == null) return "Non renseignée";
+
+        // Tableau des mois en français
+        String[] mois = {
+                "janvier", "février", "mars", "avril", "mai", "juin",
+                "juillet", "août", "septembre", "octobre", "novembre", "décembre"
+        };
+
+        // Formatage : jour + mois + année
+        return date.getDayOfMonth() + " " + mois[date.getMonthValue() - 1] + " " + date.getYear();
+    }
 
     private JPanel createMainHeader(){
         JPanel header = new JPanel(new BorderLayout()){
@@ -123,10 +135,11 @@ public class ClientInfoPage extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         LocalDate dateNaiss = Session.getCurrentDateNaissance();
+        String textedateNaissance = formatDateFr(dateNaiss);
         String texteDate = (dateNaiss != null) ? dateNaiss.toString() : "Non renseignée";
         // Lignes d'informations (Icon, Label, Champ)
         addRow(gridPanel, gbc, 0, "👤", "Nom Complet :", Session.getCurrentUserFirstName() + " "+Session.getCurrentUserLastName());
-        addRow(gridPanel, gbc, 1, "📅", "Date de Naissance :", texteDate);
+        addRow(gridPanel, gbc, 1, "📅", "Date de Naissance :", textedateNaissance);
         addRow(gridPanel, gbc, 2, "♂", "Sexe :", Session.getCurrentUserSexe());
         addRow(gridPanel, gbc, 3, "📞", "Téléphone :", Session.getCurrentUserPhone());
         addRow(gridPanel, gbc, 4, "✉️", "Email :", Session.getCurrentUserEmail());
