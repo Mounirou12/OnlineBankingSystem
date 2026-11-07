@@ -162,15 +162,7 @@ public class ClientInfoPage extends JPanel {
         buttonPanel.setBackground(Color.WHITE);
         buttonPanel.setBorder(new EmptyBorder(5, 30, 20, 30));
 
-        // Bouton Mettre à jour
-        JButton btnUpdate = createStyledButton("Mettre à jour", "✏️", BTN_PRIMARY);
-        btnUpdate.addActionListener(e -> {
-            // Action à implémenter : ouvrir un formulaire de mise à jour
-            JOptionPane.showMessageDialog(this,
-                    "Fonctionnalité de mise à jour à implémenter.",
-                    "Mise à jour",
-                    JOptionPane.INFORMATION_MESSAGE);
-        });
+
 
         // Bouton Changer de mot de passe
         JButton btnChangePassword = createStyledButton("Changer de mot de passe", "🔒", BTN_WARNING);
@@ -222,7 +214,6 @@ public class ClientInfoPage extends JPanel {
             }
         });
 
-        buttonPanel.add(btnUpdate);
         buttonPanel.add(btnChangePassword);
         buttonPanel.add(btnLogout);
 

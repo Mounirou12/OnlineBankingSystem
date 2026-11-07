@@ -5,54 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5143157c-8033-42ae-bbff-43b2222b6964" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OnlineBankingSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OnlineBankingSystem.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/controller/Accounts.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/controller/Accounts.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/controller/Session.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/controller/Session.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/controller/Transactions.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/controller/Transactions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/controller/Users.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/controller/Users.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/model/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/model/Account.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/model/AccountActive.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/model/AccountActive.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/model/AccountPrimary.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/model/AccountPrimary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/model/Transaction.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/model/Transaction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/AccueilPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/AccueilPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/LoginPage$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/LoginPage$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/LoginPage$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/LoginPage$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/LoginPage$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/LoginPage$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/LoginPage$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/LoginPage$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/LoginPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/LoginPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ChangePasswordDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ChangePasswordDialog$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ChangePasswordDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ChangePasswordDialog$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ChangePasswordDialog$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ChangePasswordDialog$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ChangePasswordDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ChangePasswordDialog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientAccountsPage$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientAccountsPage$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientAccountsPage$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientAccountsPage$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientAccountsPage$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientAccountsPage$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientAccountsPage$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientAccountsPage$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientAccountsPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientAccountsPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientInfoPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientOverviewPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientTransactionsPage$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientTransactionsPage$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientTransactionsPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientTransactionsPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/ClientTransfertPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/CreateUserDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/CreateUserDialog$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/CreateUserDialog$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/CreateUserDialog$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/CreateUserDialog$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/CreateUserDialog$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/CreateUserDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/CreateUserDialog.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/vue/page/PlaceholderTextField.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/vue/page/PlaceholderTextField.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/vue/page/ClientInfoPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/page/ClientInfoPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
