@@ -120,8 +120,7 @@ public class ClientAccountsPage extends JPanel {
         card.setBackground(Color.WHITE);
         card.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(BORDER_COLOR, 1, true),
-                new EmptyBorder(20, 25, 20, 25)
-        ));
+                new EmptyBorder(20, 25, 20, 25)));
         card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 140));
 
         JPanel leftPanel = new JPanel();
@@ -172,14 +171,13 @@ public class ClientAccountsPage extends JPanel {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 card.setBorder(BorderFactory.createCompoundBorder(
                         BorderFactory.createLineBorder(PRIMARY_BLUE, 1, true),
-                        new EmptyBorder(20, 25, 20, 25)
-                ));
+                        new EmptyBorder(20, 25, 20, 25)));
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 card.setBorder(BorderFactory.createCompoundBorder(
                         BorderFactory.createLineBorder(BORDER_COLOR, 1, true),
-                        new EmptyBorder(20, 25, 20, 25)
-                ));
+                        new EmptyBorder(20, 25, 20, 25)));
             }
         });
 
@@ -216,7 +214,7 @@ public class ClientAccountsPage extends JPanel {
         lblType.setFont(new Font("Segoe UI", Font.BOLD, 13));
         lblType.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        JComboBox<String> cbType = new JComboBox<>(new String[]{"COURANT", "EPARGNE"});
+        JComboBox<String> cbType = new JComboBox<>(new String[] { "COURANT", "EPARGNE" });
         cbType.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         cbType.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
         cbType.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -258,7 +256,8 @@ public class ClientAccountsPage extends JPanel {
                 boolean success = Accounts.insertAccount(Session.getCurrentUserId(), null, type, balance, "ACTIF");
 
                 if (success) {
-                    JOptionPane.showMessageDialog(dialog, "Compte créé avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(dialog, "Compte créé avec succès !", "Succès",
+                            JOptionPane.INFORMATION_MESSAGE);
                     dialog.dispose();
                     // Rafraîchir la page pour voir le nouveau compte
                     removeAll();
@@ -267,10 +266,13 @@ public class ClientAccountsPage extends JPanel {
                     revalidate();
                     repaint();
                 } else {
-                    JOptionPane.showMessageDialog(dialog, "Impossible de créer le compte.\nVous avez peut-être atteint la limite de comptes.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(dialog,
+                            "Impossible de créer le compte.\nVous avez peut-être atteint la limite de comptes.",
+                            "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(dialog, "Veuillez entrer un solde valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(dialog, "Veuillez entrer un solde valide.", "Erreur",
+                        JOptionPane.ERROR_MESSAGE);
             }
         });
 
@@ -311,6 +313,7 @@ public class ClientAccountsPage extends JPanel {
                 button.setBackground(bgColor.darker());
                 button.repaint();
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 button.setBackground(bgColor);
                 button.repaint();

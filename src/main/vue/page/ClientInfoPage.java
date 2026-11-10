@@ -12,18 +12,18 @@ public class ClientInfoPage extends JPanel {
     // --- Palette de couleurs basée sur l'image ---
     private final Color HEADER_BG_1 = new Color(0x00, 0x55, 0xD0); // Bleu foncé
     private final Color HEADER_BG_2 = new Color(0x00, 0x88, 0xFF); // Bleu clair
-    private final Color TITLE_BG = new Color(0x00, 0x3B, 0x8A);    // Bleu très foncé (titre détails)
+    private final Color TITLE_BG = new Color(0x00, 0x3B, 0x8A); // Bleu très foncé (titre détails)
     private final Color TEXT_DARK = new Color(0x1A, 0x1A, 0x1A);
-    private final Color FIELD_BG = new Color(0xEA, 0xF0, 0xFA);    // Bleu très très clair
+    private final Color FIELD_BG = new Color(0xEA, 0xF0, 0xFA); // Bleu très très clair
     private final Color BORDER_COLOR = new Color(0xB0, 0xC4, 0xDE);
 
     // Couleurs pour les boutons
-    private final Color BTN_PRIMARY = new Color(0x00, 0x88, 0xFF);   // Bleu pour mettre à jour
-    private final Color BTN_DANGER = new Color(0xDC, 0x35, 0x45);    // Rouge pour déconnexion
-    private final Color BTN_WARNING = new Color(0xFF, 0x8C, 0x00);   // Orange pour mot de passe
-    private final Color BTN_HOVER = new Color(0x00, 0x6B, 0xCC);     // Bleu foncé survol
+    private final Color BTN_PRIMARY = new Color(0x00, 0x88, 0xFF); // Bleu pour mettre à jour
+    private final Color BTN_DANGER = new Color(0xDC, 0x35, 0x45); // Rouge pour déconnexion
+    private final Color BTN_WARNING = new Color(0xFF, 0x8C, 0x00); // Orange pour mot de passe
+    private final Color BTN_HOVER = new Color(0x00, 0x6B, 0xCC); // Bleu foncé survol
 
-    public ClientInfoPage(){
+    public ClientInfoPage() {
         setLayout(new BorderLayout());
         setBackground(new Color(0xF4, 0xF7, 0xFB)); // Fond gris/bleu très clair de la fenêtre
         setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -34,8 +34,10 @@ public class ClientInfoPage extends JPanel {
         // 2. Carte centrale (Détails)
         add(createDetailsCard(), BorderLayout.CENTER);
     }
+
     private String formatDateFr(LocalDate date) {
-        if (date == null) return "Non renseignée";
+        if (date == null)
+            return "Non renseignée";
 
         // Tableau des mois en français
         String[] mois = {
@@ -47,12 +49,12 @@ public class ClientInfoPage extends JPanel {
         return date.getDayOfMonth() + " " + mois[date.getMonthValue() - 1] + " " + date.getYear();
     }
 
-    private JPanel createMainHeader(){
-        JPanel header = new JPanel(new BorderLayout()){
+    private JPanel createMainHeader() {
+        JPanel header = new JPanel(new BorderLayout()) {
             @Override
             protected void printComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 g2.setColor(TITLE_BG);
                 // Coins arrondis uniquement en haut
                 g2.fillRoundRect(0, 0, getWidth(), getHeight() + 20, 15, 15);
@@ -93,8 +95,7 @@ public class ClientInfoPage extends JPanel {
         card.setBackground(Color.WHITE);
         card.setBorder(BorderFactory.createCompoundBorder(
                 new EmptyBorder(20, 0, 0, 0), // Marge par rapport à l'en-tête
-                BorderFactory.createLineBorder(new Color(0xD0, 0xE0, 0xF0), 1, true)
-        ));
+                BorderFactory.createLineBorder(new Color(0xD0, 0xE0, 0xF0), 1, true)));
 
         // Titre de la carte (Détails du Client)
         JPanel cardTitlePanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 10)) {
@@ -138,7 +139,8 @@ public class ClientInfoPage extends JPanel {
         String textedateNaissance = formatDateFr(dateNaiss);
         String texteDate = (dateNaiss != null) ? dateNaiss.toString() : "Non renseignée";
         // Lignes d'informations (Icon, Label, Champ)
-        addRow(gridPanel, gbc, 0, "👤", "Nom Complet :", Session.getCurrentUserFirstName() + " "+Session.getCurrentUserLastName());
+        addRow(gridPanel, gbc, 0, "👤", "Nom Complet :",
+                Session.getCurrentUserFirstName() + " " + Session.getCurrentUserLastName());
         addRow(gridPanel, gbc, 1, "📅", "Date de Naissance :", textedateNaissance);
         addRow(gridPanel, gbc, 2, "♂", "Sexe :", Session.getCurrentUserSexe());
         addRow(gridPanel, gbc, 3, "📞", "Téléphone :", Session.getCurrentUserPhone());
@@ -162,14 +164,12 @@ public class ClientInfoPage extends JPanel {
         buttonPanel.setBackground(Color.WHITE);
         buttonPanel.setBorder(new EmptyBorder(5, 30, 20, 30));
 
-
-
         // Bouton Changer de mot de passe
         JButton btnChangePassword = createStyledButton("Changer de mot de passe", "🔒", BTN_WARNING);
         btnChangePassword.addActionListener(e -> {
             Window parentWindow = SwingUtilities.getWindowAncestor(ClientInfoPage.this);
             ChangePasswordDialog dialog = new ChangePasswordDialog(parentWindow);
-            dialog.setVisible(true);   // bloque jusqu'à fermeture (APPLICATION_MODAL)
+            dialog.setVisible(true); // bloque jusqu'à fermeture (APPLICATION_MODAL)
 
             // Si le mot de passe a été changé → reconnexion obligatoire
             if (dialog.isPasswordChanged()) {
@@ -177,8 +177,7 @@ public class ClientInfoPage extends JPanel {
                         ClientInfoPage.this,
                         "Mot de passe modifié avec succès.\nVeuillez vous reconnecter.",
                         "Reconnexion requise",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
+                        JOptionPane.INFORMATION_MESSAGE);
 
                 // 1. Nettoyer la session
                 Session.clear();
@@ -205,10 +204,10 @@ public class ClientInfoPage extends JPanel {
             if (confirm == JOptionPane.YES_OPTION) {
                 // Action à implémenter : déconnexion
                 Session.clear();
-                SwingUtilities.invokeLater(()-> new LoginPage().setVisible(true));
+                SwingUtilities.invokeLater(() -> new LoginPage().setVisible(true));
 
                 Window window = SwingUtilities.getWindowAncestor(ClientInfoPage.this);
-                if(window != null){
+                if (window != null) {
                     window.dispose();
                 }
             }
@@ -249,6 +248,7 @@ public class ClientInfoPage extends JPanel {
                 button.setBackground(bgColor.darker());
                 button.repaint();
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 button.setBackground(bgColor);
                 button.repaint();
@@ -259,23 +259,28 @@ public class ClientInfoPage extends JPanel {
     }
 
     // Méthode utilitaire pour ajouter une ligne proprement
-    private void addRow(JPanel panel, GridBagConstraints gbc, int row, String icon, String labelText, String valueText) {
+    private void addRow(JPanel panel, GridBagConstraints gbc, int row, String icon, String labelText,
+            String valueText) {
         // 1. L'icône
-        gbc.gridx = 0; gbc.gridy = row; gbc.weightx = 0;
+        gbc.gridx = 0;
+        gbc.gridy = row;
+        gbc.weightx = 0;
         JLabel iconLabel = new JLabel(icon);
         iconLabel.setFont(new Font("Segoe UI", Font.PLAIN, 20));
         iconLabel.setForeground(new Color(0x0A, 0x3B, 0x7C)); // Bleu foncé
         panel.add(iconLabel, gbc);
 
         // 2. Le label (Nom complet, etc.)
-        gbc.gridx = 1; gbc.weightx = 0.3;
+        gbc.gridx = 1;
+        gbc.weightx = 0.3;
         JLabel label = new JLabel(labelText);
         label.setFont(new Font("Segoe UI", Font.BOLD, 14));
         label.setForeground(TEXT_DARK);
         panel.add(label, gbc);
 
         // 3. Le champ de valeur
-        gbc.gridx = 2; gbc.weightx = 0.7;
+        gbc.gridx = 2;
+        gbc.weightx = 0.7;
         JTextField valueField = new JTextField(valueText);
         valueField.setEditable(false); // Lecture seule
         valueField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -283,8 +288,7 @@ public class ClientInfoPage extends JPanel {
         valueField.setBackground(FIELD_BG);
         valueField.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(BORDER_COLOR, 1, true),
-                new EmptyBorder(8, 10, 8, 10)
-        ));
+                new EmptyBorder(8, 10, 8, 10)));
         panel.add(valueField, gbc);
     }
 }

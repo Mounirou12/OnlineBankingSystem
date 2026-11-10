@@ -1,7 +1,7 @@
 package main.model;
 
 public class AccountActive {
-    private final  String accountName;
+    private final String accountName;
 
     public AccountActive(String accountName) {
         this.accountName = accountName;

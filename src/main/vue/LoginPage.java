@@ -139,9 +139,16 @@ public class LoginPage extends JFrame {
 
         loginButton.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseEntered(MouseEvent e) { loginButton.setBackground(HOVER_COLOR); loginButton.repaint(); }
+            public void mouseEntered(MouseEvent e) {
+                loginButton.setBackground(HOVER_COLOR);
+                loginButton.repaint();
+            }
+
             @Override
-            public void mouseExited (MouseEvent e) { loginButton.setBackground(PRIMARY_COLOR); loginButton.repaint(); }
+            public void mouseExited(MouseEvent e) {
+                loginButton.setBackground(PRIMARY_COLOR);
+                loginButton.repaint();
+            }
         });
 
         loginButton.addActionListener(e -> manageConnexion());
@@ -171,7 +178,9 @@ public class LoginPage extends JFrame {
         mainPanel.add(card);
         setContentPane(mainPanel);
     }
-    // ⚠️ Correction : on retire le paramètre placeholder inutile et on corrige les couleurs
+
+    // ⚠️ Correction : on retire le paramètre placeholder inutile et on corrige les
+    // couleurs
     private void styliserChamp(JTextField field) {
         field.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
         field.setFont(new Font("Segoe UI", Font.PLAIN, 14)); // ✅ Typo corrigée
@@ -179,24 +188,21 @@ public class LoginPage extends JFrame {
 
         field.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(BORDER_COLOR, 1, true),
-                new EmptyBorder(5, 10, 5, 10)
-        ));
+                new EmptyBorder(5, 10, 5, 10)));
 
         field.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
                 field.setBorder(BorderFactory.createCompoundBorder(
                         BorderFactory.createLineBorder(PRIMARY_COLOR, 2, true),
-                        new EmptyBorder(4, 9, 4, 9)
-                ));
+                        new EmptyBorder(4, 9, 4, 9)));
             }
 
             @Override
             public void focusLost(FocusEvent e) {
                 field.setBorder(BorderFactory.createCompoundBorder(
                         BorderFactory.createLineBorder(BORDER_COLOR, 1, true),
-                        new EmptyBorder(5, 10, 5, 10)
-                ));
+                        new EmptyBorder(5, 10, 5, 10)));
             }
         });
     }
@@ -215,7 +221,8 @@ public class LoginPage extends JFrame {
 
         // ⚠️ Vérifie que la classe Users existe et a bien une méthode connexion
         if (Users.connexion(identifiant, motDePasse)) {
-//            JOptionPane.showMessageDialog(this, "Bienvenue "+ Session.getCurrentUserFirstName() + "!");
+            // JOptionPane.showMessageDialog(this, "Bienvenue "+
+            // Session.getCurrentUserFirstName() + "!");
             this.dispose();
             new AccueilPage().setVisible(true);
         } else {
@@ -225,8 +232,10 @@ public class LoginPage extends JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }
     }
+
     public static void main(String[] args) {
-        // Pour que l'interface utilise le style natif du système (plus beau sur Windows/Mac)
+        // Pour que l'interface utilise le style natif du système (plus beau sur
+        // Windows/Mac)
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {

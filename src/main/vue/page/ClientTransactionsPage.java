@@ -78,8 +78,10 @@ public class ClientTransactionsPage extends JPanel {
 
         int userId = Session.getCurrentUserId();
 
-        // ⚠️ IMPORTANT : Pour avoir TOUT l'historique, n'utilisez pas la méthode "Limit".
-        // Si vous n'avez que la méthode avec "LIMIT 3", créez une méthode sœur sans le LIMIT
+        // ⚠️ IMPORTANT : Pour avoir TOUT l'historique, n'utilisez pas la méthode
+        // "Limit".
+        // Si vous n'avez que la méthode avec "LIMIT 3", créez une méthode sœur sans le
+        // LIMIT
         // ou utilisez directement la méthode qui récupère toutes les transactions.
         List<Transaction> transactions = Transactions.getAllTransactionsByUserId(userId);
 
@@ -118,8 +120,7 @@ public class ClientTransactionsPage extends JPanel {
         row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 70));
         row.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(BORDER_COLOR, 1, true),
-                new EmptyBorder(10, 15, 10, 15)
-        ));
+                new EmptyBorder(10, 15, 10, 15)));
 
         // --- GAUCHE : Icône + Détails ---
         JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 0));

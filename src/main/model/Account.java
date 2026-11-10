@@ -1,7 +1,7 @@
 package main.model;
 
 public class Account {
-    private final  int id;
+    private final int id;
     private final int userId;
     private final String accountNumber;
     private final String accountType;

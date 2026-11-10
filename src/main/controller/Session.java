@@ -12,7 +12,8 @@ public class Session {
     private static String currentUserSexe = null;
     private static String currentUserAdresse = null;
 
-    public static void setCurrentUser(int id, String firstName,String lastName, String email,String phone, LocalDate dateNaissance, String sexe, String adresse) {
+    public static void setCurrentUser(int id, String firstName, String lastName, String email, String phone,
+            LocalDate dateNaissance, String sexe, String adresse) {
         currentUserId = id;
         currentUserFirstName = firstName;
         currentUserLastName = lastName;

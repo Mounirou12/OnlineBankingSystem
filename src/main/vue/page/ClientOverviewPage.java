@@ -14,9 +14,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.List;
 
-
 public class ClientOverviewPage extends JPanel {
-
 
     // Couleurs de la palette
     private final Color BG_COLOR = new Color(0xF4, 0xF7, 0xFB);
@@ -37,7 +35,8 @@ public class ClientOverviewPage extends JPanel {
         title.setBorder(new EmptyBorder(0, 0, 15, 0));
         add(title, BorderLayout.NORTH);
 
-        // Conteneur pour les 3 panels (utilise GridBagLayout pour donner des tailles précises)
+        // Conteneur pour les 3 panels (utilise GridBagLayout pour donner des tailles
+        // précises)
         JPanel panelsContainer = new JPanel(new GridBagLayout());
         panelsContainer.setOpaque(false);
         GridBagConstraints gbc = new GridBagConstraints();
@@ -100,8 +99,7 @@ public class ClientOverviewPage extends JPanel {
         balanceCard.setBackground(Color.WHITE);
         balanceCard.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(0xE0, 0xE0, 0xE0), 1, true),
-                new EmptyBorder(20, 20, 20, 20)
-        ));
+                new EmptyBorder(20, 20, 20, 20)));
 
         // En-tête de la carte Solde
         JPanel balanceHeader = new JPanel(new BorderLayout());
@@ -152,9 +150,7 @@ public class ClientOverviewPage extends JPanel {
                 new EmptyBorder(20, 0, 0, 0),
                 BorderFactory.createCompoundBorder(
                         BorderFactory.createLineBorder(new Color(0xE0, 0xE0, 0xE0), 1, true),
-                        new EmptyBorder(15, 15, 15, 15)
-                )
-        ));
+                        new EmptyBorder(15, 15, 15, 15))));
 
         JLabel lblRecent = new JLabel("Recent Transactions");
         lblRecent.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -165,11 +161,11 @@ public class ClientOverviewPage extends JPanel {
 
         // Lignes de transactions
         List<Transaction> recentTransactions = Transactions.getAllTransactionsByUserIdLimit(userId);
-        for (Transaction tx : recentTransactions){
+        for (Transaction tx : recentTransactions) {
             recentTransCard.add(createTransactionRow(tx));
             recentTransCard.add(Box.createVerticalStrut(10));
         }
-        if (recentTransactions.isEmpty()){
+        if (recentTransactions.isEmpty()) {
             JLabel lblEmpty = new JLabel("Aucune transaction récente.");
             lblEmpty.setFont(new Font("Segoe UI", Font.ITALIC, 12));
             lblEmpty.setForeground(TEXT_GRAY);
@@ -180,6 +176,7 @@ public class ClientOverviewPage extends JPanel {
         panel.add(recentTransCard);
         return panel;
     }
+
     // =========================================================
     // PANEL 2 : Quick Transfer
     // =========================================================
@@ -189,8 +186,7 @@ public class ClientOverviewPage extends JPanel {
         panel.setBackground(Color.WHITE);
         panel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(0xE0, 0xE0, 0xE0), 1, true),
-                new EmptyBorder(20, 20, 20, 20)
-        ));
+                new EmptyBorder(20, 20, 20, 20)));
 
         JLabel lblTitle = new JLabel("Quick Transfer");
         lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 16));
@@ -202,18 +198,20 @@ public class ClientOverviewPage extends JPanel {
         // Champ From Account
         panel.add(createLabel("From Account"));
 
-// 1. Création du JComboBox typé avec AccountActive
+        // 1. Création du JComboBox typé avec AccountActive
         JComboBox<AccountActive> cbFromAccount = new JComboBox<>();
         styleComboBox(cbFromAccount);
 
-// On indique au ComboBox comment afficher un AccountActive (avec les étoiles)
+        // On indique au ComboBox comment afficher un AccountActive (avec les étoiles)
         cbFromAccount.setRenderer(new DefaultListCellRenderer() {
             @Override
-            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
+                    boolean cellHasFocus) {
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
                 if (value instanceof AccountActive) {
                     AccountActive acc = (AccountActive) value;
-                    // Adaptez getAccountNumber() selon le nom exact de votre méthode dans AccountActive
+                    // Adaptez getAccountNumber() selon le nom exact de votre méthode dans
+                    // AccountActive
                     String rawNumber = acc.getAccountName();
                     String maskedNumber = "•••• " + rawNumber.substring(Math.max(0, rawNumber.length() - 4));
                     setText("Primary Account (" + maskedNumber + ")");
@@ -222,13 +220,13 @@ public class ClientOverviewPage extends JPanel {
             }
         });
 
-// 2. Récupération de l'ID de l'utilisateur
+        // 2. Récupération de l'ID de l'utilisateur
         int currentUserId = Session.getCurrentUserId();
 
-// 3. Appel de votre méthode
+        // 3. Appel de votre méthode
         List<AccountActive> userAccounts = Accounts.getAllAccountsByUserIdAndType(currentUserId);
 
-// 4. Remplissage (on ajoute l'objet complet, pas juste le texte)
+        // 4. Remplissage (on ajoute l'objet complet, pas juste le texte)
         if (userAccounts != null && !userAccounts.isEmpty()) {
             for (AccountActive account : userAccounts) {
                 cbFromAccount.addItem(account); // On ajoute l'objet !
@@ -237,7 +235,7 @@ public class ClientOverviewPage extends JPanel {
             // Si aucun compte, on laisse le combo vide, ou on gère ça autrement
         }
 
-// 5. Ajout au panel
+        // 5. Ajout au panel
         panel.add(cbFromAccount);
         panel.add(Box.createVerticalStrut(15));
 
@@ -259,14 +257,14 @@ public class ClientOverviewPage extends JPanel {
         JButton btnSend = createStyledButton("➤ Send Money", PRIMARY_BLUE, Color.WHITE);
         btnSend.setAlignmentX(Component.LEFT_ALIGNMENT);
         btnSend.setMaximumSize(new Dimension(Integer.MAX_VALUE, 45));
-        btnSend.addActionListener(e->{
-            AccountActive selectedAccount =(AccountActive) cbFromAccount.getSelectedItem();
+        btnSend.addActionListener(e -> {
+            AccountActive selectedAccount = (AccountActive) cbFromAccount.getSelectedItem();
 
-            if (selectedAccount == null){
-                JOptionPane.showMessageDialog(this, "Veuillez sélectionner un compte.", "Erreur", JOptionPane.WARNING_MESSAGE);
+            if (selectedAccount == null) {
+                JOptionPane.showMessageDialog(this, "Veuillez sélectionner un compte.", "Erreur",
+                        JOptionPane.WARNING_MESSAGE);
                 return;
             }
-
 
             // On extrait le vrai numéro de compte (sans les étoiles)
             String sourceAccountNumber = selectedAccount.getAccountName();
@@ -283,13 +281,13 @@ public class ClientOverviewPage extends JPanel {
             }
 
             // Appel de votre méthode mise à jour
-            boolean success = Transactions.transferMoney(sourceAccountNumber,targetAccountNumber,amount);
-            if (success){
-                JOptionPane.showMessageDialog(this,"Transfert reussi!");
+            boolean success = Transactions.transferMoney(sourceAccountNumber, targetAccountNumber, amount);
+            if (success) {
+                JOptionPane.showMessageDialog(this, "Transfert reussi!");
                 txtRecipient.setText("");
                 txtAmount.setText("");
 
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Échec du transfert.", "Erreur", JOptionPane.ERROR_MESSAGE);
             }
         });
@@ -374,6 +372,7 @@ public class ClientOverviewPage extends JPanel {
 
         return row;
     }
+
     private String getInitials(String name) {
         if (name == null || name.trim().isEmpty()) {
             return "??";
@@ -401,8 +400,7 @@ public class ClientOverviewPage extends JPanel {
         field.setBackground(Color.WHITE);
         field.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(0xD0, 0xD0, 0xD0), 1, true),
-                new EmptyBorder(10, 10, 10, 10)
-        ));
+                new EmptyBorder(10, 10, 10, 10)));
         field.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
         field.setAlignmentX(Component.LEFT_ALIGNMENT);
     }
@@ -413,8 +411,7 @@ public class ClientOverviewPage extends JPanel {
         combo.setBackground(Color.WHITE);
         combo.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(0xD0, 0xD0, 0xD0), 1, true),
-                new EmptyBorder(5, 5, 5, 5)
-        ));
+                new EmptyBorder(5, 5, 5, 5)));
         combo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
         combo.setAlignmentX(Component.LEFT_ALIGNMENT);
     }
@@ -447,6 +444,7 @@ public class ClientOverviewPage extends JPanel {
                 btn.setBackground(bgColor.darker());
                 btn.repaint();
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btn.setBackground(bgColor);
                 btn.repaint();

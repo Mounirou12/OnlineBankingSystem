@@ -15,31 +15,31 @@ public class Accounts {
     private static final String USERNAME = "mounir";
     private static final String PASSWORD = "agnila10";
 
-    private static boolean canCreateAccount(int userId){
+    private static boolean canCreateAccount(int userId) {
         String sqlcount = "SELECT COUNT(*) FROM Accounts "
-                +"WHERE userId = ?";
-        try( Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        PreparedStatement stmt = conn.prepareStatement(sqlcount)) {
-        stmt.setInt(1,userId);
-        try (ResultSet rs = stmt.executeQuery()){
-            if (rs.next()){
-                int count  = rs.getInt(1);
-                if (count >=3){
-                    System.out.println("l'utilisateur " + userId
-                            + " a déjà " + count + " comptes bancaires (max 2).");
-                    return false;
+                + "WHERE userId = ?";
+        try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+                PreparedStatement stmt = conn.prepareStatement(sqlcount)) {
+            stmt.setInt(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    int count = rs.getInt(1);
+                    if (count >= 3) {
+                        System.out.println("l'utilisateur " + userId
+                                + " a déjà " + count + " comptes bancaires (max 2).");
+                        return false;
+                    }
                 }
             }
-        }
         } catch (SQLException e) {
             return false;
         }
-        return  true;
+        return true;
     }
 
     public static boolean insertAccount(int userId, String accountNumber, String accountType, long balance,
             String status) {
-        if (!canCreateAccount(userId)){
+        if (!canCreateAccount(userId)) {
             System.out.println("Creation de compte refusée : l'utilisateur " + userId
                     + " possede deja le maximum de compte qu'il faut dans son compte.");
             return false;
@@ -73,9 +73,9 @@ public class Accounts {
             stmt.setInt(1, userId);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    //String rawAccountNumber = rs.getString("accountNumber");
-                    //String maskedNumber = "**** "
-                      //      + rawAccountNumber.substring(Math.max(0, rawAccountNumber.length() - 4));
+                    // String rawAccountNumber = rs.getString("accountNumber");
+                    // String maskedNumber = "**** "
+                    // + rawAccountNumber.substring(Math.max(0, rawAccountNumber.length() - 4));
                     accounts.add(new Account(
                             rs.getInt("id"),
                             rs.getInt("userId"),
@@ -92,12 +92,12 @@ public class Accounts {
         return accounts;
     }
 
-    public  static  List<AccountActive> getAllAccountsByUserIdAndType(int userId){
+    public static List<AccountActive> getAllAccountsByUserIdAndType(int userId) {
 
         List<AccountActive> accounts = new ArrayList<>();
         String queryRDBU = "SELECT accountNumber FROM Accounts WHERE userId = ? AND status = 'ACTIF'";
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(queryRDBU)) {
+                PreparedStatement stmt = conn.prepareStatement(queryRDBU)) {
             stmt.setInt(1, userId);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
@@ -112,12 +112,12 @@ public class Accounts {
         return accounts;
     }
 
-    public  static  List<AccountPrimary> getPrimaryAccount(int userId){
+    public static List<AccountPrimary> getPrimaryAccount(int userId) {
 
         List<AccountPrimary> account = new ArrayList<>();
         String queryRDBU = "SELECT accountNumber, balance,status FROM Accounts WHERE userId = ? AND status = 'ACTIF' LIMIT 1";
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(queryRDBU)) {
+                PreparedStatement stmt = conn.prepareStatement(queryRDBU)) {
             stmt.setInt(1, userId);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
@@ -157,10 +157,10 @@ public class Accounts {
         return null;
     }
 
-//    public static void main(String[] args) {
-//        System.out.println(insertAccount(4, "", "COURANT", 30000, "ACTIF"));
-//        List<Account> accounts = getAllAccountsByUserId(3);
-//        accounts.forEach(System.out::println);
-//        System.out.println(getAccountByIdAndUserId(1, 3));
-//    }
+    // public static void main(String[] args) {
+    // System.out.println(insertAccount(4, "", "COURANT", 30000, "ACTIF"));
+    // List<Account> accounts = getAllAccountsByUserId(3);
+    // accounts.forEach(System.out::println);
+    // System.out.println(getAccountByIdAndUserId(1, 3));
+    // }
 }

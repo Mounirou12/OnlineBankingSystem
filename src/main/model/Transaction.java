@@ -10,7 +10,7 @@ public class Transaction {
     private final String status;
     private final String compte;
 
-    public Transaction( Date transactionDate, double amount, String type, String destinataire, String status,
+    public Transaction(Date transactionDate, double amount, String type, String destinataire, String status,
             String compte) {
         this.transactionDate = transactionDate;
         this.amount = amount;
@@ -19,7 +19,6 @@ public class Transaction {
         this.status = status;
         this.compte = compte;
     }
-
 
     public Date getTransactionDate() {
         return transactionDate;

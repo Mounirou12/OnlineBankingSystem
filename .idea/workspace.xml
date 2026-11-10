@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5143157c-8033-42ae-bbff-43b2222b6964" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/OnlineBankingSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OnlineBankingSystem.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/vue/page/ClientInfoPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/vue/page/ClientInfoPage.java" afterDir="false" />
-    </list>
+    <list default="true" id="5143157c-8033-42ae-bbff-43b2222b6964" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

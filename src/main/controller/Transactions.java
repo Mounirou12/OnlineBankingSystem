@@ -175,6 +175,7 @@ public class Transactions {
             }
         }
     }
+
     public static List<Transaction> getAllTransactionsByUserId(int userId) {
         List<Transaction> transactions = new ArrayList<>();
         String queryATU = "SELECT t.id, t.transactionDate, t.amount, t.type, t.recipientName, t.status, a.accountNumber "
@@ -212,10 +213,10 @@ public class Transactions {
                 "JOIN Accounts a ON t.accountId = a.id " +
                 "JOIN Users u ON a.userId = u.id " +
                 "WHERE u.id = ? " +
-                "ORDER BY t.transactionDate DESC "+
+                "ORDER BY t.transactionDate DESC " +
                 "LIMIT 3";
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement(queryATU)) {
+                PreparedStatement stmt = conn.prepareStatement(queryATU)) {
             stmt.setInt(1, userId);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
@@ -292,37 +293,37 @@ public class Transactions {
         }
     }
 
-//    public static void main(String[] args) {
-//        System.out.println("=== TEST DE VIREMENT INTERNE ===");
-//        /*
-//         * int compteSource = 1; // Le compte d'Alex (ACTIF)
-//         * String compteDestinataire = "4423 1727 3619 7604"; // Le compte de Taylor
-//         * (BLOQUÉ)
-//         * double montant = 2500;
-//         * String nomDestinataire = getAccountOwnerName(compteDestinataire);
-//         * String nomEnvoyeur = getSourceAccountIdName(compteSource);
-//         * if (nomDestinataire != null) {
-//         * System.out.println("Recherche : Compte trouvé. Bénéficiaire : " +
-//         * nomDestinataire);
-//         * System.out.println("Recherche : Proprietaire trouve. Debiteur : " +
-//         * nomEnvoyeur);
-//         * System.out.println("L'utilisateur clique maintenant sur 'Envoyer'...\n");
-//         *
-//         * // 2. Étape de transfert (le clic sur le bouton)
-//         * boolean succes = transferMoney(compteSource, compteDestinataire, montant);
-//         *
-//         * if (succes) {
-//         * System.out.println("✅ Virement effectué avec succès !");
-//         * } else {
-//         * // C'est ici que l'interface afficherait le popup d'erreur
-//         * System.out.
-//         * println("❌ Échec du virement. (Voir le message d'erreur ci-dessus).");
-//         * }
-//         * } else {
-//         * System.out.println("❌ Numéro de compte introuvable.");
-//         * }
-//         */
-//        List<Transaction> transactions = getAllTransactionsByUserId(3);
-//        transactions.forEach(System.out::println);
-//    }
+    // public static void main(String[] args) {
+    // System.out.println("=== TEST DE VIREMENT INTERNE ===");
+    // /*
+    // * int compteSource = 1; // Le compte d'Alex (ACTIF)
+    // * String compteDestinataire = "4423 1727 3619 7604"; // Le compte de Taylor
+    // * (BLOQUÉ)
+    // * double montant = 2500;
+    // * String nomDestinataire = getAccountOwnerName(compteDestinataire);
+    // * String nomEnvoyeur = getSourceAccountIdName(compteSource);
+    // * if (nomDestinataire != null) {
+    // * System.out.println("Recherche : Compte trouvé. Bénéficiaire : " +
+    // * nomDestinataire);
+    // * System.out.println("Recherche : Proprietaire trouve. Debiteur : " +
+    // * nomEnvoyeur);
+    // * System.out.println("L'utilisateur clique maintenant sur 'Envoyer'...\n");
+    // *
+    // * // 2. Étape de transfert (le clic sur le bouton)
+    // * boolean succes = transferMoney(compteSource, compteDestinataire, montant);
+    // *
+    // * if (succes) {
+    // * System.out.println("✅ Virement effectué avec succès !");
+    // * } else {
+    // * // C'est ici que l'interface afficherait le popup d'erreur
+    // * System.out.
+    // * println("❌ Échec du virement. (Voir le message d'erreur ci-dessus).");
+    // * }
+    // * } else {
+    // * System.out.println("❌ Numéro de compte introuvable.");
+    // * }
+    // */
+    // List<Transaction> transactions = getAllTransactionsByUserId(3);
+    // transactions.forEach(System.out::println);
+    // }
 }

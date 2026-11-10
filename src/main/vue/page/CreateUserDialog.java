@@ -14,23 +14,23 @@ import java.time.format.DateTimeParseException;
 public class CreateUserDialog extends JDialog {
 
     // --- Palette cohérente avec l'application ---
-    private final Color TITLE_BG    = new Color(0x00, 0x3B, 0x8A);
-    private final Color FIELD_BG    = new Color(0xEA, 0xF0, 0xFA);
-    private final Color BORDER_CLR  = new Color(0xB0, 0xC4, 0xDE);
-    private final Color TEXT_DARK   = new Color(0x1A, 0x1A, 0x1A);
+    private final Color TITLE_BG = new Color(0x00, 0x3B, 0x8A);
+    private final Color FIELD_BG = new Color(0xEA, 0xF0, 0xFA);
+    private final Color BORDER_CLR = new Color(0xB0, 0xC4, 0xDE);
+    private final Color TEXT_DARK = new Color(0x1A, 0x1A, 0x1A);
     private final Color BTN_PRIMARY = new Color(0x00, 0x88, 0xFF);
-    private final Color BTN_CANCEL  = new Color(0x6C, 0x75, 0x7D);
+    private final Color BTN_CANCEL = new Color(0x6C, 0x75, 0x7D);
 
     // --- Champs ---
-    private final JTextField     firstNameField = new JTextField();
-    private final JTextField     lastNameField  = new JTextField();
-    private final JTextField     emailField     = new JTextField();
-    private final JPasswordField passwordField  = new JPasswordField();
-    private final JPasswordField confirmField   = new JPasswordField();
-    private final JTextField     phoneField     = new JTextField();
-    private final JTextField     dateField      = new JTextField();   // format yyyy-MM-dd
-    private final JComboBox<String> sexeCombo   = new JComboBox<>(new String[]{"Homme", "Femme", "Autre"});
-    private final JTextField     adresseField   = new JTextField();
+    private final JTextField firstNameField = new JTextField();
+    private final JTextField lastNameField = new JTextField();
+    private final JTextField emailField = new JTextField();
+    private final JPasswordField passwordField = new JPasswordField();
+    private final JPasswordField confirmField = new JPasswordField();
+    private final JTextField phoneField = new JTextField();
+    private final JTextField dateField = new JTextField(); // format yyyy-MM-dd
+    private final JComboBox<String> sexeCombo = new JComboBox<>(new String[] { "Homme", "Femme", "Autre" });
+    private final JTextField adresseField = new JTextField();
 
     private boolean userCreated = false;
 
@@ -47,7 +47,8 @@ public class CreateUserDialog extends JDialog {
 
         // --- En-tête ---
         JPanel header = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 12)) {
-            @Override protected void paintComponent(Graphics g) {
+            @Override
+            protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 g2.setColor(TITLE_BG);
@@ -115,7 +116,9 @@ public class CreateUserDialog extends JDialog {
         styleCombo(sexeCombo);
     }
 
-    public boolean isUserCreated() { return userCreated; }
+    public boolean isUserCreated() {
+        return userCreated;
+    }
 
     // --- Création d'un bloc label + champ ---
     private JPanel createField(String labelText, JComponent field) {
@@ -135,8 +138,7 @@ public class CreateUserDialog extends JDialog {
             tf.setBackground(FIELD_BG);
             tf.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(BORDER_CLR, 1, true),
-                    new EmptyBorder(8, 10, 8, 10)
-            ));
+                    new EmptyBorder(8, 10, 8, 10)));
             if (tf instanceof JPasswordField) {
                 ((JPasswordField) tf).setEchoChar('●');
             }
@@ -153,13 +155,13 @@ public class CreateUserDialog extends JDialog {
         combo.setBackground(FIELD_BG);
         combo.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(BORDER_CLR, 1, true),
-                new EmptyBorder(6, 8, 6, 8)
-        ));
+                new EmptyBorder(6, 8, 6, 8)));
     }
 
     private JButton createStyledButton(String text, Color bg) {
         JButton b = new JButton(text) {
-            @Override protected void paintComponent(Graphics g) {
+            @Override
+            protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 g2.setColor(getBackground());
@@ -178,8 +180,15 @@ public class CreateUserDialog extends JDialog {
         b.setCursor(new Cursor(Cursor.HAND_CURSOR));
         b.setBorder(new EmptyBorder(10, 20, 10, 20));
         b.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent e) { b.setBackground(bg.darker()); b.repaint(); }
-            public void mouseExited (MouseEvent e) { b.setBackground(bg);         b.repaint(); }
+            public void mouseEntered(MouseEvent e) {
+                b.setBackground(bg.darker());
+                b.repaint();
+            }
+
+            public void mouseExited(MouseEvent e) {
+                b.setBackground(bg);
+                b.repaint();
+            }
         });
         return b;
     }
@@ -187,14 +196,14 @@ public class CreateUserDialog extends JDialog {
     // --- Logique de validation et d'insertion ---
     private void handleSubmit() {
         String firstName = firstNameField.getText().trim();
-        String lastName  = lastNameField.getText().trim();
-        String email     = emailField.getText().trim();
-        String password  = new String(passwordField.getPassword());
-        String confirm   = new String(confirmField.getPassword());
-        String phone     = phoneField.getText().trim();
-        String dateStr   = dateField.getText().trim();
-        String sexe      = (String) sexeCombo.getSelectedItem();
-        String adresse   = adresseField.getText().trim();
+        String lastName = lastNameField.getText().trim();
+        String email = emailField.getText().trim();
+        String password = new String(passwordField.getPassword());
+        String confirm = new String(confirmField.getPassword());
+        String phone = phoneField.getText().trim();
+        String dateStr = dateField.getText().trim();
+        String sexe = (String) sexeCombo.getSelectedItem();
+        String adresse = adresseField.getText().trim();
 
         // 1. Champs obligatoires
         if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty()
@@ -250,11 +259,10 @@ public class CreateUserDialog extends JDialog {
         }
 
         // 5. Appel métier : l'insertion se fait dans Users.insertUser
-        //    qui applique déjà BCrypt.hashpw sur le mot de passe
+        // qui applique déjà BCrypt.hashpw sur le mot de passe
         boolean ok = Users.insertUser(
                 firstName, lastName, email, password, phone,
-                dateNaissance, sexe, adresse
-        );
+                dateNaissance, sexe, adresse);
 
         if (ok) {
             userCreated = true;

@@ -47,7 +47,8 @@ public class PlaceholderTextField extends JTextField implements FocusListener {
 
     @Override
     public String getText() {
-        // Si on affiche le placeholder, on retourne une chaîne vide pour la logique métier
+        // Si on affiche le placeholder, on retourne une chaîne vide pour la logique
+        // métier
         return showingPlaceholder ? "" : super.getText();
     }
 
