@@ -10,8 +10,8 @@ import java.util.List;
 public class Transactions {
 
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/OnlineBanking";
-    private static final String USERNAME = "mounir";
-    private static final String PASSWORD = "agnila10";
+    private static final String USERNAME = "USER";
+    private static final String PASSWORD = "MOTDEPASSE";
 
     private static String getAccountOwnerName(String accountNumber) {
         String queryAOW = "SELECT u.firstName, u.lastName FROM Users u " +

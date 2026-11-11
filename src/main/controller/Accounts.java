@@ -12,8 +12,8 @@ import main.model.AccountPrimary;
 
 public class Accounts {
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/OnlineBanking";
-    private static final String USERNAME = "mounir";
-    private static final String PASSWORD = "agnila10";
+    private static final String USERNAME = "USER";
+    private static final String PASSWORD = "MOTDEPASSE";
 
     private static boolean canCreateAccount(int userId) {
         String sqlcount = "SELECT COUNT(*) FROM Accounts "

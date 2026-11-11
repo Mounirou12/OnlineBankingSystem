@@ -8,8 +8,8 @@ import java.time.LocalDate;
 public class Users {
 
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/OnlineBanking";
-    private static final String USERNAME = "mounir";
-    private static final String PASSWORD = "agnila10";
+    private static final String USERNAME = "USER";
+    private static final String PASSWORD = "MOTDEPASSE";
 
     public static boolean insertUser(String firstName, String lastName, String email, String passwordHash,
             String phone, LocalDate dateNaissance, String sexe, String adresse) {
